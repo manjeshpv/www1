@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <base href="/">
+    <title>Angular Full-Stack Generator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <style type="text/css">
+
+    @import url("assets/css/style.css");
+    @import url("assets/css/settings.css");
+    @import url("assets/css/bootstrap.css");
+    @import url("assets/css/animate.min.css");
+    @import url("assets/css/magnific-popup.css");
+    @import url("assets/css/icon-fonts.css");
+    @import url("assets/css/custome.css");
+    @import url("assets/css/flexslider.css");
+    @import url("assets/css/owl.carousel.css?ver=4.5.4");
+    @import url("assets/css/owl.transitions.css?ver=4.5.4");
+    @import url("assets/css/caro-slider.css");
+
+  </style>
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+        rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
+
+</head>
+<body>
+<div id="main_wrapper main_page">
+  <!-- top haeder and navbar -->
+  <nav class="navbar main_nav" data-spy="affix" data-offset-top="0"> <!-- data-offset-top="0" --?>
+            <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="top_header_links">
+        <div>
+          <span class="ico-phone5"></span>&nbsp; <a href="tel:1800">1-800-CONTACT</a>
+        </div>
+        <div>
+          <span class="ico-envelope"></span>&nbsp; <a href="mailto:info@triptoli.com">info@triptoli.com</a>
+        </div>
+      </div>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my_navbar"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="my_navbar">
+      <ul class="nav navbar-nav my_navbar">
+        <li class="active"><a href="index.htm">Home</a></li>
+        <li><a href="#">Create Itinerary</a></li>
+        <li><a href="#">Blogs</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="contact.htm">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav my_navbar navbar-right margin_right0">
+        <div class="top_header_links">
+          <div>
+            <span class="ico-phone5"></span>&nbsp; <a href="tel:1800">1-800-CONTACT</a>
+          </div>
+          <div>
+            <span class="ico-envelope"></span>&nbsp; <a
+            href="mailto:info@triptoli.com">info@triptoli.com</a>
+          </div>
+        </div>
+        <li class="myAccount"><a href="#">My Account</a></li>
+        <li class="nav_saperator">|</li>
+        <li class="login"><a href="#">Login</a></li>
+        <li class="nav_saperator">|</li>
+        <li class="register"><a href="#">Register</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+  <!-- end top header and navbar -->
+
+  <!-- Slider Revolution -->
+  <div class="container-fluid padding_no main_body_page">
+
+    <div class="col-md-12 padding_no">
+      <div class="main_banner">
+        <div class="social_icon">
+          <a href="javascript:;" class="btn btn_social facebook_ico"><span class="ico-facebook"></span></a>
+          <a href="javascript:;" class="btn btn_social twitter_ico"><span class="ico-twitter"></span></a>
+          <a href="javascript:;" class="btn btn_social google_ico"><span class="ico-google-plus"></span></a>
+          <a href="javascript:;" class="btn btn_social linkedin_ico"><span class="ico-linkedin2"></span></a>
+        </div>
+
+
+        <div class="logo">
+          <img src="assets/images/logo.png">
+          <h4 class="logo_tagline">
+            <strong>Simple works.</strong> So maybe we should stay that way.
+          </h4>
+        </div>
+
+        <!-- carousel main -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <div class="phone_previews">
+                <div class="center_phone fadeInUp delayp8">
+                  <div class="phoneOverlay">
+                    <div></div>
+                    <p class="clicktoClose">
+                      <i class="ico-cross2"></i>
+                      click to close</p>
+                  </div>
+
+                  <div id="phone_prev">
+
+                    <div>
+                      <img src="assets/images/mobile_preview_4.jpg" alt="">
+                      <h2>First View</h2>
+
+                      <div class="bullet left top close show">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>IN-ITINERARY</strong>, You pick the monuments and we
+                              plan for you </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="bullet left centre mid show">
+                        <div>
+                          <div>
+                            <h4>Feature 2</h4>
+                            <p><strong>VIRTUAL GUIDE</strong>, Explore the monument with geo
+                              based info </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="bullet left btm far show">
+                        <div>
+                          <div>
+                            <h4>Feature 3</h4>
+                            <p><strong>KNOW MORE</strong>, Our alerts keep you posted on
+                              real time changes </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="bullet right top far show">
+                        <div>
+                          <div>
+                            <h4>Feature 4</h4>
+                            <p><strong>COUPONS</strong>, Delivered when U are 50 Mt radius
+                              of the shop </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="bullet right centre close show">
+                        <div>
+                          <div>
+                            <h4>Feature 5</h4>
+                            <p><strong>EXPERT Opinion</strong>, Talk anytime with InCity
+                              local guide </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="bullet right btm close show">
+                        <div>
+                          <div>
+                            <h4>Feature 6</h4>
+                            <p><strong>MULTIPLE DAY</strong> , it's for multiple days and
+                              locations </p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div>
+                      <img src="assets/images/mobile_preview_1.jpg" alt="">
+                      <h2>Second View</h2>
+
+
+                      <div class="bullet left centre close">
+                        <div>
+                          <div>
+                            <h4>Feature 2</h4>
+                            <p><strong>Expert support</strong>, talk to us from the monument
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left btm mid">
+                        <div>
+                          <div>
+                            <h4>Feature 3</h4>
+                            <p><strong>Read offline</strong>, write-up complied by our
+                              experts </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet right centre close">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>Audio guide</strong>, in case you don’t want to hire
+                              guide </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <img src="assets/images/mobile_preview_5.jpg" alt="">
+                      <h2>Third View</h2>
+
+                      <div class="bullet left top close">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>Touch points</strong>, You explore and we keep you
+                              posted </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left centre mid">
+                        <div>
+                          <div>
+                            <h4>Feature 2</h4>
+                            <p><strong>Modification</strong>, its easy you say yes and we
+                              add adjust </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left btm far">
+                        <div>
+                          <div>
+                            <h4>Feature 3</h4>
+                            <p><strong>Filter</strong>, you select from monument, museums,
+                              temple </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet right top close">
+                        <div>
+                          <div>
+                            <h4>Feature 4</h4>
+                            <p><strong>Social network</strong>, share directly from App </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <img src="assets/images/mobile_preview_2.jpg" alt="">
+                      <h2>Forth View</h2>
+
+                      <div class="bullet left top close">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>Coupons</strong>, for dining, shopping and tickets
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left centre mid">
+                        <div>
+                          <div>
+                            <h4>Feature 2</h4>
+                            <p><strong>Geo based</strong>, Coupons only in 50ft radium </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left btm far">
+                        <div>
+                          <div>
+                            <h4>Feature 3</h4>
+                            <p><strong>Best in class</strong>, we pick only best for you
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <img src="assets/images/mobile_preview_3.jpg" alt="">
+                      <h2>Fifth View</h2>
+
+                      <div class="bullet left centre mid">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>Chat</strong>, reach to our experts anytime </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <img src="assets/images/mobile_preview_6.jpg" alt="">
+                      <h2>Sixth View</h2>
+
+
+                      <div class="bullet left top mid">
+                        <div>
+                          <div>
+                            <h4>Feature 1</h4>
+                            <p><strong>Multiple Days</strong>, select up to 10 days </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bullet left centre close">
+                        <div>
+                          <div>
+                            <h4>Feature 2</h4>
+                            <p><strong>Special events</strong>, we find based shows for you
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /center_phone -->
+
+                  <div class="apple_app_btn">
+                    <a href="javascript:;" class="google_btn"><img src="assets/images/app_btn.png"></a>
+                  </div>
+                  <div class="google_play_btn">
+                    <a href="javascript:;" class="google_btn"><img src="assets/images/play_btn.png"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- carousel main -->
+      </div>
+
+      <!-- search box -->
+      <div class="search_box">
+        <form class="search_form">
+          <div class="search_input">
+            <input type="text" class="form-control" placeholder="City/Address">
+          </div>
+          <div class="date_input">
+            <div class="input-group">
+              <input type="text" class="form-control date_from" placeholder="From">
+              <span class="input-group-addon"><img src="assets/images/cal_icon.png"></span>
+            </div>
+          </div>
+          <div class="date_input date_lst">
+            <div class="input-group">
+              <input type="text" class="form-control date_to" placeholder="To">
+              <span class="input-group-addon"><img src="assets/images/cal_icon.png"></span>
+            </div>
+          </div>
+
+          <div class="search_button">
+            <button type="button" class="btn btn-search"><span class="ico-search8"></span></button>
+          </div>
+        </form>
+      </div>
+      <!--end search box -->
+    </div>
+
+    <div class="clear"></div>
+    <div class="add-itinerary" data-spy="affix" data-offset-top="653">
+      <img src="assets/images/addItinerary.png">
+
+      <div class="create-itinerary-btn">
+        <a href="#" class="cart-itineray">
+          <i class="ico-shopping-cart2"></i>
+          <span>1</span>
+        </a>
+        <ul>
+          <li><a href="#">Create</a></li>
+          <li><a href="#">Itinerary</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--<div class="full_body_image"></div>-->
+
+    <!-- select from the best -->
+    <div class="container">
+      <section class="best_select">
+        <h4 class="sctn_heading">
+          <div>Select</div>
+          from the best
+        </h4>
+
+        <div class="sctn_tagline">
+          <hr class="sctn_hr">
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+          alteration in some form, by injected humour, or randomised words which don't look even slightly
+          believable.
+          <hr class="sctn_hr">
+        </div>
+
+        <div class="tab_sctn">
+          <ul class="nav nav-tabs best_tabs">
+            <li><a href="#stay" data-toggle="tab">Stay</a></li>
+            <li class="active"><a href="#explore" data-toggle="tab">Explore</a></li>
+            <li><a href="#guide" data-toggle="tab">Guide </a></li>
+            <li><a href="#cab" data-toggle="tab">Cab</a></li>
+            <li><a href="#shop" data-toggle="tab">Shop</a></li>
+            <li><a href="#dine" data-toggle="tab">Dine</a></li>
+          </ul>
+
+          <div class="tab-content sctn_tab_content">
+            <div id="explore" class="tab-pane fade in active">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="single_item">
+                    <div class="porto_galla">
+                      <a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">
+                        <img src="assets/images/aamer_fort.jpg" alt="Post Title">
+                        <div class="item_detail">
+                          <h5 class="item_heading">Aamer Fort 1</h5>
+                          <p class="package">23KM/ 30 Minutes</p>
+                          <p class="item_desc">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have.</p>
+                          <button type="button" class="btn know_more">Know More</button>
+                          <button type="button" class="btn add_itinerary">Add to itinerary
+                          </button>
+                        </div>
+                      </a>
+                      <a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">
+                        <img src="assets/images/aamer_fort.jpg" alt="Post Title">
+                        <div class="item_detail">
+                          <h5 class="item_heading">Aamer Fort 2</h5>
+                          <p class="package">23KM/ 30 Minutes</p>
+                          <p class="item_desc">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have.</p>
+                          <button type="button" class="btn know_more">Know More</button>
+                          <button type="button" class="btn add_itinerary">Add to itinerary
+                          </button>
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <div class="multiple_item small_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/hawa_mahal.jpg" class="feature_inner_ling">
+                            <img src="assets/images/hawa_mahal.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Hawa Mahal1</h5>
+                              <p class="package">5KM/ 10 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/hawa_mahal.jpg" class="feature_inner_ling">
+                            <img src="assets/images/hawa_mahal.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Hawa Mahal2</h5>
+                              <p class="package">5KM/ 10 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-7">
+                      <div class="multiple_item big_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/city_palace.jpg" class="feature_inner_ling">
+                            <img src="assets/images/city_palace.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">City Palace 1</h5>
+                              <p class="package">9KM/ 15 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/city_palace.jpg" class="feature_inner_ling">
+                            <img src="assets/images/city_palace.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">City Palace 2</h5>
+                              <p class="package">9KM/ 15 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row item_row">
+                    <div class="col-sm-7">
+                      <div class="multiple_item big_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
+                            <img src="assets/images/jantar_mantar.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Jantar Mantar</h5>
+                              <p class="package">11KM/ 20 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
+                            <img src="assets/images/jantar_mantar.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Jantar Mantar</h5>
+                              <p class="package">11KM/ 20 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="multiple_item small_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
+                            <img src="assets/images/birla_temple.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Birla Temple</h5>
+                              <p class="package">15KM/ 25 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
+                            <img src="assets/images/birla_temple.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Birla Temple</h5>
+                              <p class="package">15KM/ 25 Minutes</p>
+                              <p class="item_desc">There are many variations of passages
+                                of Lorem Ipsum available, but the majority have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- end select from the best -->
+
+    <!-- wellness city events -->
+    <section class="best_select">
+      <div id="map" class="events">
+
+      </div>
+    </section>
+    <!-- end wellness city events -->
+    <div class="clear"></div>
+    <!-- packages & activities -->
+    <div class="container">
+      <section class="best_select">
+        <h4 class="sctn_heading">Packages & Activities</h4>
+
+        <div class="tab_sctn">
+          <ul class="nav nav-tabs best_tabs package_tabs">
+            <li><a href="#stay" data-toggle="tab">
+              <div class="trip_text">TRIP</div>
+              <div class="toli_text">toli</div>
+              RECOMMENDS</a></li>
+            <li class="active"><a href="#packages" data-toggle="tab">STANDARD PACKAGES</a></li>
+            <li><a href="#activities" data-toggle="tab">SPECIAL ACTIVITIES </a></li>
+          </ul>
+
+          <div class="tab-content sctn_tab_content activities_pack">
+            <div id="packages" class="tab-pane fade in active">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="single_item">
+                    <div class="porto_galla">
+                      <a href="assets/images/jaipur_tour.jpg" class="feature_inner_ling">
+                        <img src="assets/images/jaipur_tour.jpg" alt="Post Title">
+                        <div class="item_detail">
+                          <h5 class="item_heading">2N/3D Jaipur Tours</h5>
+                          <p class="item_desc desc_tour">There are many variations of passages
+                            of Lorem Ipsum available, but the majority have.</p>
+                          <button type="button" class="btn know_more">Know More</button>
+                          <button type="button" class="btn add_itinerary">Add to itinerary
+                          </button>
+                        </div>
+                      </a>
+                      <a href="assets/images/jaipur_tour.jpg" class="feature_inner_ling">
+                        <img src="assets/images/jaipur_tour.jpg" alt="Post Title">
+                        <div class="item_detail">
+                          <h5 class="item_heading">2N/3D Jaipur Tours</h5>
+                          <p class="item_desc desc_tour">There are many variations of passages
+                            of Lorem Ipsum available, but the majority have.</p>
+                          <button type="button" class="btn know_more">Know More</button>
+                          <button type="button" class="btn add_itinerary">Add to itinerary
+                          </button>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <div class="multiple_item small_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/royal_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/royal_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">4N/5D Royal Tours 1</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/royal_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/royal_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">4N/5D Royal Tours 2</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-7">
+                      <div class="multiple_item big_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/heritage_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/heritage_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">2N/3D Heritage Tours 1</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/heritage_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/heritage_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">2N/3D Heritage Tours 2</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row item_row">
+                    <div class="col-sm-7">
+                      <div class="multiple_item big_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/royal_heritage.jpg" class="feature_inner_ling">
+                            <img src="assets/images/royal_heritage.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Royal Heritage Tour 1</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/royal_heritage.jpg" class="feature_inner_ling">
+                            <img src="assets/images/royal_heritage.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Royal Heritage Tour 2</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="multiple_item small_item">
+                        <div class="porto_galla">
+                          <a href="assets/images/golden_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/golden_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Golden Triangle Tour 1</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                          <a href="assets/images/golden_tour.jpg" class="feature_inner_ling">
+                            <img src="assets/images/golden_tour.jpg" alt="Post Title">
+                            <div class="item_detail">
+                              <h5 class="item_heading">Golden Triangle Tour 2</h5>
+                              <p class="item_desc desc_tour">There are many variations of
+                                passages of Lorem Ipsum available, but the majority
+                                have.</p>
+                              <button type="button" class="btn know_more">Know More
+                              </button>
+                              <button type="button" class="btn add_itinerary">Add to
+                                itinerary
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- end packages & activities -->
+
+    <!-- nearby place -->
+    <section class="best_select">
+      <div class="nearby">
+        <div class="container">
+          <h4 class="sctn_heading">Nearby Place</h4>
+          <div  class="row caro-slider">
+
+            <div id="jssor_1"
+                 style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;">
+              <!-- Loading Screen -->
+              <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                <div style="position:absolute;display:block;background:url('assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+              </div>
+              <div data-u="slides"
+                   style="cursor: default; position: relative; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden;">
+                <a data-u="any" href="http://www.jssor.com" style="display:none">Carousel</a>
+                <div>
+                  <div class="nearby_item">
+                    <img src="assets/images/ajmer.jpg">
+                    <div class="nearby_item_name">
+                      <a href="javascript:;">Ajmer</a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="nearby_item">
+                    <img src="assets/images/sambhar.jpg">
+                    <div class="nearby_item_name">
+                      <a href="javascript:;">Sambhar</a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="nearby_item">
+                    <img src="assets/images/pushkar.jpg">
+                    <div class="nearby_item_name">
+                      <a href="javascript:;">Pushkar</a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="nearby_item">
+                    <img src="assets/images/sambhar.jpg">
+                    <div class="nearby_item_name">
+                      <a href="javascript:;">Sambhar</a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="nearby_item">
+                    <img src="assets/images/mandawa.jpg">
+                    <div class="nearby_item_name">
+                      <a href="javascript:;">Mandawa</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Bullet Navigator -->
+              <!--<div data-u="navigator" class="jssorb03" style="bottom:10px;right:10px;">-->
+              <!--&lt;!&ndash; bullet navigator item prototype &ndash;&gt;-->
+              <!--<div data-u="prototype" style="width:21px;height:21px;">-->
+              <!--<div data-u="numbertemplate"></div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!-- Arrow Navigator -->
+              <span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;"
+                    data-autocenter="2"></span>
+              <span data-u="arrowright" class="jssora03r"
+                    style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end nearby Place -->
+
+    <!-- footer -->
+    <footer class="main_footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="footer_item_box">
+              <h4 class="footer_heading"><span class="trip_text">TRIP</span><span
+                class="toli_text">toli</span></h4>
+              <p class="contact_address">D-98, Pawan Path, Hanuman Nagar Vaishali Nagar <br>
+                Jaipur (Rajasthan) - 302021</p>
+              <div class="contact_info"><span class="ico-phone"></span> &nbsp; <a href="tel:1800">1-800-CONTACT</a>
+              </div>
+              <div class="contact_info"><span class="ico-envelope-o"></span> &nbsp; <a
+                href="mailto:info@triptoli.com">info@triptoli.com</a></div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="footer_item_box">
+              <h4 class="footer_heading">Quick Links</h4>
+
+              <ul class="quick_items">
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="javascript:;">Itinerary</a></li>
+                <li><a href="javascript:;">Blogs</a></li>
+                <li><a href="javascript:;">Reviews</a></li>
+                <li><a href="javascript:;">Trending</a></li>
+                <li><a href="contact.htm">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="footer_item_box">
+              <h4 class="footer_heading">Follow us on</h4>
+
+              <ul class="follow_items">
+                <li><span><img src="assets/images/fb.png"></span><a href="javascript:;">Facebook </a></li>
+                <li><span><img src="assets/images/twitter.png"></span><a href="javascript:;">Twitter</a></li>
+                <li><span><img src="assets/images/pint.png"></span><a href="javascript:;">Pinterest</a></li>
+                <li><span><img src="assets/images/gplus.png"></span><a href="javascript:;">Gplus</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="footer_item_box">
+              <h4 class="footer_heading">Sign up for Newsletter</h4>
+              <p class="newsletter_tag">Subscribe to our newsletter now to stay updated with what's new
+                with Midway!</p>
+              <div class="contact_info">
+                <form class="newsletter_form">
+                  <div class="form-group">
+                    <input type="email" name="email_newsletter" placeholder="email address"
+                           class="form-control">
+                    <button type="button" class="btn btn-newsletter">GO</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="copy_right">
+          &copy; 2015-2016 Trip Toli . All rights reserved.
+        </div>
+      </div>
+    </footer>
+    <!-- end footer -->
+  </div>
+  <!-- End Slider Revolution -->
+
+  <a href="#0" class="hm_go_top"></a>
+</div>
+<!-- End wrapper -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/jquery.js"><\/script>')</script>
+<script type="text/javascript" src="assets/js/flexslider-min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<!-- this is where we put our custom functions -->
+<script type="text/javascript" src="assets/js/functions.js"></script>
+<script src="assets/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script type='text/javascript' src='assets/js/owl.carousel.min.js?ver=4.5.4'></script>
+
+
+<script type="text/javascript">
+  $(function () {
+
+    $("#phone_prev").owlCarousel({
+
+      navigation: true, // Show next and prev buttons
+      slideSpeed: 300,
+      paginationSpeed: 400,
+      singleItem: true,
+      afterAction: function (el) {
+        //remove class active
+        this
+          .$owlItems
+          .removeClass('active')
+
+        //add class active
+        this
+          .$owlItems //owl internal $ object containing items
+          .eq(this.currentItem)
+          .addClass('active')
+      }
+
+      // "singleItem:true" is a shortcut for:
+      // items : 1,
+      // itemsDesktop : false,
+      // itemsDesktopSmall : false,
+      // itemsTablet: false,
+      // itemsMobile : false
+
+    });
+  });
+</script>
+<script
+  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDpNjsXgj60Lz7zvDNC38lmZYUJfkeeHSY&libraries=places"></script>
+
+<script type="text/javascript">
+  myMap();
+  function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    var mylatLong1 = new google.maps.LatLng(26.912484, 75.747331);
+    setLocation1(mylatLong1, map);
+
+    var mylatLong2 = new google.maps.LatLng(26.8921609, 75.8155296);
+    setLocation2(mylatLong2, map);
+
+    var styledMapType = new google.maps.StyledMapType(
+      [
+        {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+        {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+        {
+          featureType: 'administrative',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#c9b2a6'}]
+        },
+        {
+          featureType: 'administrative.land_parcel',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#dcd2be'}]
+        },
+        {
+          featureType: 'administrative.land_parcel',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#ae9e90'}]
+        },
+        {
+          featureType: 'landscape.natural',
+          elementType: 'geometry',
+          stylers: [{color: '#dfd2ae'}]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'geometry',
+          stylers: [{color: '#dfd2ae'}]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#93817c'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'geometry.fill',
+          stylers: [{color: '#a5b076'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#447530'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry',
+          stylers: [{color: '#f5f1e6'}]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry',
+          stylers: [{color: '#fdfcf8'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry',
+          stylers: [{color: '#f8c967'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#e9bc62'}]
+        },
+        {
+          featureType: 'road.highway.controlled_access',
+          elementType: 'geometry',
+          stylers: [{color: '#e98d58'}]
+        },
+        {
+          featureType: 'road.highway.controlled_access',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#db8555'}]
+        },
+        {
+          featureType: 'road.local',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#806b63'}]
+        },
+        {
+          featureType: 'transit.line',
+          elementType: 'geometry',
+          stylers: [{color: '#dfd2ae'}]
+        },
+        {
+          featureType: 'transit.line',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#8f7d77'}]
+        },
+        {
+          featureType: 'transit.line',
+          elementType: 'labels.text.stroke',
+          stylers: [{color: '#ebe3cd'}]
+        },
+        {
+          featureType: 'transit.station',
+          elementType: 'geometry',
+          stylers: [{color: '#dfd2ae'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'geometry.fill',
+          stylers: [{color: '#b9d3c2'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#92998d'}]
+        }
+      ],
+      {name: 'Styled Map'});
+
+  }
+
+  function setLocation1(mylatLong, map) {
+    var myLocation = new google.maps.Marker({
+      position: mylatLong,
+      map: map,
+      title: "Me",
+      zIndex: 1,
+
+    });
+    // markers.push(myLocation);
+    var contentString = '<div class="event_one">' +
+      '<div class="event_item">' +
+      '<img src="assets/images/event_1.jpg">' +
+      '<div class="event_desc">' +
+      '<h6>Musical Night</h6>' +
+      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
+      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
+      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(myLocation, 'click', function () {
+      infowindow.open(map, myLocation);
+      $(".gm-style-iw").parent().addClass("transparentClass");
+      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+    });
+
+    google.maps.event.addListener(myLocation, 'dragend', function (event) {
+      console.log(this.getPosition().lat());
+      console.log(this.getPosition().lng());
+    });
+
+  }
+  function setLocation2(mylatLong, map) {
+    var myLocation = new google.maps.Marker({
+      position: mylatLong,
+      map: map,
+      title: "Me",
+      zIndex: 1,
+
+    });
+    // markers.push(myLocation);
+    var contentString = '<div class="event_one">' +
+      '<div class="event_item">' +
+      '<img src="assets/images/event_1.jpg">' +
+      '<div class="event_desc">' +
+      '<h6>Musical Night</h6>' +
+      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
+      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
+      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(myLocation, 'click', function () {
+      infowindow.open(map, myLocation);
+      $(".gm-style-iw").parent().addClass("transparentClass");
+      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+    });
+
+    google.maps.event.addListener(myLocation, 'dragend', function (event) {
+      console.log(this.getPosition().lat());
+      console.log(this.getPosition().lng());
+    });
+
+  }
+</script>
+<script type="text/javascript" src="assets/js/jssor.slider-21.1.6.mini.js"></script>
+<script type="text/javascript" src="assets/js/caro-slider.js"></script>
+
+
+    <!--<navbar></navbar>-->
+    <!--<div ng-view=""></div>-->
+    <!--<footer></footer>-->
+</body>
+</html>
