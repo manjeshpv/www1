@@ -19,14 +19,15 @@ import {
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
-import Contact from './contact/contact.component';
+import explore from './explore/explore.component';
+import contact from './contact/contact.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 
 import './app.css';
 
 angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
-  footer, main,Contact, constants, util
+  footer, main,explore,contact, constants, util
 ])
   .config(routeConfig);
 

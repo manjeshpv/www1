@@ -1,66 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <base href="/">
-    <title>Welcome To Triptoli</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-  <style type="text/css">
-
-    @import url("assets/css/style.css");
-    @import url("assets/css/settings.css");
-    @import url("assets/css/bootstrap.css");
-    @import url("assets/css/animate.min.css");
-    @import url("assets/css/magnific-popup.css");
-    @import url("assets/css/icon-fonts.css");
-    @import url("assets/css/custome.css");
-    @import url("assets/css/flexslider.css");
-    @import url("assets/css/owl.carousel.css?ver=4.5.4");
-    @import url("assets/css/owl.transitions.css?ver=4.5.4");
-    @import url("assets/css/caro-slider.css");
-    @import url("assets/css/slider.css");
-
-  </style>
-
-  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-        rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
-
-</head>
-<body>
-<div id="main_wrapper main_page">
-
-  <navbar></navbar>
-  <!-- Slider Revolution -->
-
-  <div class="container-fluid padding_no main_body_page">
-    <div ng-view=""></div>
-    <!-- end nearby Place -->
-    <footer></footer>
-  </div>
-  <!-- End Slider Revolution -->
-  <a href="#0" class="hm_go_top"></a>
-</div>
-<!-- End wrapper -->
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/jquery.js"><\/script>')</script>
+'use strict';
+const angular = require('angular');
+const ngRoute = require('angular-route');
 
 
+import routes from './explore.routes';
 
+export class ExploreComponent {
+  /*@ngInject*/
+  constructor() {
+    this.message = 'Hello';
+    myMap();
+  }
 
-<script
-  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDpNjsXgj60Lz7zvDNC38lmZYUJfkeeHSY&libraries=places"></script>
-
-<script type="text/javascript">
-  myMap();
-  function myMap() {
+  myMap() {
     var mapCanvas = document.getElementById("map");
     var mapOptions = {
       center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -75,7 +27,7 @@
 
   }
 
-  function setLocation1(mylatLong, map) {
+  setLocation1(mylatLong, map) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
       map: map,
@@ -111,7 +63,7 @@
     });
 
   }
-  function setLocation2(mylatLong, map) {
+  setLocation2(mylatLong, map) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
       map: map,
@@ -147,12 +99,13 @@
     });
 
   }
-</script>
+}
 
-
-
-    <!--<navbar></navbar>-->
-    <!--<div ng-view=""></div>-->
-    <!--<footer></footer>-->
-</body>
-</html>
+export default angular.module('triptoliUiApp.explore', [ngRoute])
+  .config(routes)
+  .component('explore', {
+    template: require('./explore.html'),
+    controller: ExploreComponent,
+    controllerAs: 'exploreCtrl'
+  })
+  .name;
