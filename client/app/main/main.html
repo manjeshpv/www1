@@ -808,3 +808,37 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(function () {
+
+    $("#phone_prev").owlCarousel({
+
+      navigation: true, // Show next and prev buttons
+      slideSpeed: 300,
+      paginationSpeed: 400,
+      singleItem: true,
+      afterAction: function (el) {
+        //remove class active
+        this
+          .$owlItems
+          .removeClass('active')
+
+        //add class active
+        this
+          .$owlItems //owl internal $ object containing items
+          .eq(this.currentItem)
+          .addClass('active')
+      }
+
+      // "singleItem:true" is a shortcut for:
+      // items : 1,
+      // itemsDesktop : false,
+      // itemsDesktopSmall : false,
+      // itemsTablet: false,
+      // itemsMobile : false
+
+    });
+  });
+</script>
+<script type="text/javascript" src="assets/js/jssor.slider-21.1.6.mini.js"></script>
+<script type="text/javascript" src="assets/js/caro-slider.js"></script>
