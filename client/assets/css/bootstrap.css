@@ -1426,7 +1426,7 @@ abbr[data-original-title] {
   text-transform: uppercase;
 }
 blockquote {
-  
+
 }
 blockquote p:last-child,
 blockquote ul:last-child,
@@ -4888,8 +4888,8 @@ a.badge:focus {
   }
   .container .jumbotron,
   .container-fluid .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px;
+    padding-right: 15px;
+    padding-left: 15px;
   }
   .jumbotron h1,
   .jumbotron .h1 {
@@ -5525,7 +5525,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-group .panel-heading + .panel-collapse > .panel-body,
 .panel-group .panel-heading + .panel-collapse > .list-group {
-  
+
 }
 .panel-group .panel-footer {
   border-top: 0;

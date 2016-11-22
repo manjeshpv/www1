@@ -28,7 +28,7 @@
 
 .mapheader {
   background-color: #0073B7;
-  height: 40px;
+  height: 62px;
 }
 
 .mapfooter {
@@ -54,12 +54,167 @@
 }
 
 .poicontainer {
-  height: 535px;
+  height: 560px;
   border-left: 1px solid #9d9d9d;
   border-bottom: 1px solid #9d9d9d;
 }
 
 .poiitems {
   max-height: 450px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden
+}
+
+.poiitem {
+  border-right: 3px solid #0073B7;
+  width: 110px;
+  height: 125px;
+  padding-top: 50px;
+}
+
+.poiitemimg {
+  width: 140px;
+  height: 90px;
+}
+.poiimg{
+  height: 130px;
+}
+
+.poiitemimgbg {
+  background-image: url("../../assets/images/poiitembg.png") !important;
+  background-repeat: no-repeat;
+}
+
+.itineraryItems {
+  max-height: 450px;
+  overflow-y: scroll;
+  overflow-x: hidden
+}
+
+.itineraryItemName {
+  position: absolute;
+  bottom: 0px;
+  left: 20%;
+  z-index: 999999;
+  background-color: #000000;
+  width: 140px;
+  opacity: 0.6;
+  color: #FFFFFF !important;
+}
+
+.poiItemName {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  z-index: 999999;
+  background-color: #000000;
+  width: 100%;
+  opacity: 0.6;
+  color: #FFFFFF !important;
+  height: 30px;
+}
+.addbutton{
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  z-index: 999999899;
+  height: 40px;
+}
+.linkcolor {
+  color: #ffffff !important;
+}
+
+
+
+/*
+ *  STYLE 6
+ */
+
+#style-6::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+#style-6::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+#style-6::-webkit-scrollbar-thumb {
+  background-color: #1193ff;
+  background-image: -webkit-linear-gradient(45deg,
+  rgba(255, 255, 255, .2) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255, 255, 255, .2) 50%,
+  rgba(255, 255, 255, .2) 75%,
+  transparent 75%,
+  transparent)
+}
+/*
+ *  STYLE 6
+ */
+
+#style-7::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+#style-7::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+#style-7::-webkit-scrollbar-thumb {
+  background-color: #ff9e00;
+  background-image: -webkit-linear-gradient(45deg,
+  rgba(255, 255, 255, .2) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255, 255, 255, .2) 50%,
+  rgba(255, 255, 255, .2) 75%,
+  transparent 75%,
+  transparent)
+}
+
+.startButton {
+  -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+  background: -moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+  background: -webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+  background: -o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+  background: -ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+  background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7', GradientType=0);
+  background-color: #007dc1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #124d77;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
+}
+
+.startButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+  background: -moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+  background: -webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+  background: -o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+  background: -ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+  background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1', GradientType=0);
+  background-color: #0061a7;
+}
+
+.startButton:active {
+  position: relative;
+  top: 1px;
 }
