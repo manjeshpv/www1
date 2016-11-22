@@ -76,7 +76,8 @@
   width: 140px;
   height: 90px;
 }
-.poiimg{
+
+.poiimg {
   height: 130px;
 }
 
@@ -94,7 +95,7 @@
 .itineraryItemName {
   position: absolute;
   bottom: 0px;
-  left: 20%;
+  left: 27%;
   z-index: 999999;
   background-color: #000000;
   width: 140px;
@@ -113,18 +114,26 @@
   color: #FFFFFF !important;
   height: 30px;
 }
-.addbutton{
+
+.addbutton {
   position: absolute;
   top: -10px;
   right: -5px;
   z-index: 999999899;
   height: 40px;
 }
+
+.lastButton {
+  margin-top: 200px;
+}
+
+.nextButton {
+  margin-top: 200px;
+}
+
 .linkcolor {
   color: #ffffff !important;
 }
-
-
 
 /*
  *  STYLE 6
@@ -151,6 +160,7 @@
   transparent 75%,
   transparent)
 }
+
 /*
  *  STYLE 6
  */
