@@ -45,6 +45,7 @@
 /* inject:css */
 @import 'contact/contact.css';
 @import 'explore/explore.css';
+@import 'itinerary-plan/itinerary-plan.css';
 @import 'main/main.css';
 @import '../components/footer/footer.css';
 @import '../components/modal/modal.css';
