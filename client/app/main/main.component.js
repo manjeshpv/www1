@@ -123,6 +123,11 @@ export class MainController {
   deleteThing(thing) {
     this.$http.delete(`/api/things/${thing._id}`);
   }
+
+  bookMe(){
+    console.log("Testing of data call");
+  }
+
 }
 
 export default angular.module('triptoliUiApp.main', [ngRoute])

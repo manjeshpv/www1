@@ -75,8 +75,9 @@ width: 100%;
 }
 
 .specification{
-  border-bottom: 1px solid #9d9d9d;
-  border-top: 1px solid #9d9d9d;
+  border-bottom: 1px solid #c8c8c8;
+  border-top: 1px solid #c8c8c8;
+  margin-top: 10px;
 }
 .speciHeading{
 text-align: center;
@@ -86,6 +87,6 @@ text-align: center;
   text-decoration: underline;
 }
 .rightborder{
-border-right: 1px solid #9d9d9d;
+border-right: 1px solid #c8c8c8;
   height: 150px;
 }
