@@ -43,6 +43,7 @@
 
 /* Component styles are injected through gulp */
 /* inject:css */
+@import 'book-guide/book-guide.css';
 @import 'contact/contact.css';
 @import 'explore/explore.css';
 @import 'itinerary-plan/itinerary-plan.css';

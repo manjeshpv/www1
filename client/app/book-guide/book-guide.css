@@ -1,0 +1,91 @@
+.heading{
+  font: 30px 'Roboto Slab';
+  color:#0e4778;
+  font-weight:300;
+  width:80%;
+  text-align:left;
+}
+.guideBox{
+background-color: #EAEAEA;
+  padding: 20px;
+}
+
+select{
+  border: none;
+  background-color:#EAEAEA ;
+  border-bottom: 1px solid #9ea3a3;
+  margin-left: 2px;
+  padding: 0px 0px;
+}
+.datepiker
+{
+  border: none !important;
+  background-color:#EAEAEA !important;
+  border-bottom: 1px solid #9ea3a3 !important;
+  margin-left: 2px;
+  padding: 0px 10px !important;
+  line-height: 15px !important;
+}
+
+.monumentImg{
+width: 100%;
+  height: 200px;
+}
+.slot{
+  font: 12px 'Roboto Slab';
+}
+.nearby_item{
+  margin-bottom: 0px;
+}
+.nearby_item_name{
+  bottom:1px;
+}
+.symplus{
+  font-size: 50px;
+  font-weight: bold;
+  color: #F98430;
+  padding:0px;
+}
+
+.btnBook {
+  background: #F98430;
+  background-image: -webkit-linear-gradient(top, #F98430, #F98430);
+  background-image: -moz-linear-gradient(top, #F98430, #F98430);
+  background-image: -ms-linear-gradient(top, #F98430, #F98430);
+  background-image: -o-linear-gradient(top, #F98430, #F98430);
+  background-image: linear-gradient(to bottom, #F98430, #F98430);
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 32px 10px 32px;
+  text-decoration: none;
+}
+
+.btnBook:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.specification{
+  border-bottom: 1px solid #9d9d9d;
+  border-top: 1px solid #9d9d9d;
+}
+.speciHeading{
+text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: #3cb0fd;
+  text-decoration: underline;
+}
+.rightborder{
+border-right: 1px solid #9d9d9d;
+  height: 200px;
+}
