@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <base href="/">
-    <title>Welcome To Triptoli</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <base href="/">
+  <title>Welcome To Triptoli</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <style type="text/css">
 
@@ -28,8 +28,9 @@
 
   <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-        rel='stylesheet' type='text/css'>
+  <link
+    href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+    rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
 
 </head>
@@ -51,11 +52,103 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/jquery.js"><\/script>')</script>
+<script
+  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDpNjsXgj60Lz7zvDNC38lmZYUJfkeeHSY&libraries=places"></script>
+<script>
+  myMap();
+ function myMap()
+  {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
 
+    var mylatLong1 = new google.maps.LatLng(26.912484, 75.747331);
+    setLocation1(mylatLong1, map);
 
+    var mylatLong2 = new google.maps.LatLng(26.8921609, 75.8155296);
+    setLocation2(mylatLong2, map);
 
-    <!--<navbar></navbar>-->
-    <!--<div ng-view=""></div>-->
-    <!--<footer></footer>-->
+  }
+
+  function setLocation1(mylatLong, map)
+  {
+    var myLocation = new google.maps.Marker({
+      position: mylatLong,
+      map: map,
+      title: "Me",
+      zIndex: 1,
+
+    });
+// markers.push(myLocation);
+    var contentString = '<div class="event_one">' +
+      '<div class="event_item">' +
+      '<img src="assets/images/event_1.jpg">' +
+      '<div class="event_desc">' +
+      '<h6>Musical Night</h6>' +
+      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
+      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
+      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(myLocation, 'click', function () {
+      infowindow.open(map, myLocation);
+      $(".gm-style-iw").parent().addClass("transparentClass");
+      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+    });
+
+    google.maps.event.addListener(myLocation, 'dragend', function (event) {
+      console.log(this.getPosition().lat());
+      console.log(this.getPosition().lng());
+    });
+
+  }
+  function setLocation2(mylatLong, map)
+  {
+    var myLocation = new google.maps.Marker({
+      position: mylatLong,
+      map: map,
+      title: "Me",
+      zIndex: 1,
+
+    });
+// markers.push(myLocation);
+    var contentString = '<div class="event_one">' +
+      '<div class="event_item">' +
+      '<img src="assets/images/event_1.jpg">' +
+      '<div class="event_desc">' +
+      '<h6>Musical Night</h6>' +
+      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
+      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
+      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(myLocation, 'click', function () {
+      infowindow.open(map, myLocation);
+      $(".gm-style-iw").parent().addClass("transparentClass");
+      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+    });
+
+    google.maps.event.addListener(myLocation, 'dragend', function (event) {
+      console.log(this.getPosition().lat());
+      console.log(this.getPosition().lng());
+    });
+
+  }
+</script>
+<!--<navbar></navbar>-->
+<!--<div ng-view=""></div>-->
+<!--<footer></footer>-->
 </body>
 </html>

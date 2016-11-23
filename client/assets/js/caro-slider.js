@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
     };
 
     var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-    var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_1_options);
+
 
     /*responsive code begin*/
     /*you can remove responsive code if you don't want the slider scales while window resizing*/
@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
     $(window).bind("resize", ScaleSlider);
     $(window).bind("orientationchange", ScaleSlider);
 
+  var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_1_options);
   function ScaleSlider1() {
     var refSize = jssor_2_slider.$Elmt.parentNode.clientWidth;
     if (refSize) {

@@ -10,7 +10,7 @@ export class MainController {
   /*@ngInject*/
   constructor($http) {
     this.$http = $http;
-
+    myMap();
   }
 
   $onInit() {
@@ -18,7 +18,7 @@ export class MainController {
       .then(response => {
         this.awesomeThings = response.data;
       });
-    myMap();
+
 
   }
 
