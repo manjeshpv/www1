@@ -22,6 +22,10 @@ import main from './main/main.component';
 import explore from './explore/explore.component';
 import itineraryPlan from './itinerary-plan/itinerary-plan.component';
 import bookGuide from './book-guide/book-guide.component';
+import accountSetting from './account-setting/account-setting.component';
+import myTrip from './my-trip/my-trip.component';
+import bookingStay from './booking-stay/booking-stay.component';
+import profileComponent from './profile/profile.component';
 import contact from './contact/contact.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
@@ -30,7 +34,7 @@ import util from '../components/util/util.module';
 import './app.css';
 
 var myapp=angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
-  footer, main,explore,itineraryPlan,bookGuide,contact, constants, util
+  footer, main,explore,itineraryPlan,bookGuide,accountSetting,myTrip,bookingStay,profileComponent,contact, constants, util
 ])
   .config(routeConfig);
 

@@ -1,0 +1,80 @@
+/*.myimg{*/
+    /*margin-left: 70px;*/
+    /*margin-top: 20px;*/
+/*}*/
+.border{
+    border-left: none;
+    border-right:none;
+    border-top:2px solid #1985bc ;
+    border-bottom:2px solid #1985bc;
+}
+.asidebar{
+    background-color: #1985bc;
+    height: 570px;
+}
+.list{
+    margin-top: 20px;
+    color: #D7D7D7;
+}
+
+.formclass{
+
+    margin-top: 40px;
+}
+.formclass .border{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid black;
+}
+.navbar-default {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    background-color: white;
+}
+.navbar-default{
+    border-bottom:2px solid #FF9536;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #FF9536;
+    color: #FFC0CB;
+}
+hr{
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: 60px;
+    border-style: inset;
+    border-width: 1px;
+    color: red;
+}
+small{
+    margin-left: 5%;
+}
+.image{
+    width: 80%;
+    height: 80%;
+}
+.DivMargin{
+  margin-left: 4%;
+}
+
+h6 span{
+    z-index: 100;
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+  background-color: #000000;
+}
+.tripbottom{
+  background-color: #88999a;
+}
+.gImage{
+  border: 1px solid #E7E7E7 !important;
+}

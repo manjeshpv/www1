@@ -10,6 +10,10 @@ export class BookGuideComponent {
   constructor() {
     this.message = 'Hello';
   }
+
+  onClick() {
+    console.log("Clicked Me ");
+  }
 }
 
 export default angular.module('triptoliUiApp.book-guide', [ngRoute])
