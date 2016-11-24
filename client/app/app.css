@@ -43,11 +43,15 @@
 
 /* Component styles are injected through gulp */
 /* inject:css */
+@import 'account-setting/account-setting.css';
 @import 'book-guide/book-guide.css';
+@import 'booking-stay/booking-stay.css';
 @import 'contact/contact.css';
 @import 'explore/explore.css';
 @import 'itinerary-plan/itinerary-plan.css';
 @import 'main/main.css';
+@import 'my-trip/my-trip.css';
+@import 'profile/profile.css';
 @import '../components/footer/footer.css';
 @import '../components/modal/modal.css';
 /* endinject */
