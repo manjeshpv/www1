@@ -24,3 +24,9 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+.flxslide {
+  min-height: 150px;
+  max-height: 400px;
+  width: 100%;
+}

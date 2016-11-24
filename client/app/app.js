@@ -26,9 +26,10 @@ import contact from './contact/contact.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 
+
 import './app.css';
 
-angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
+var myapp=angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
   footer, main,explore,itineraryPlan,bookGuide,contact, constants, util
 ])
   .config(routeConfig);
@@ -39,3 +40,32 @@ angular.element(document)
       strictDi: true
     });
   });
+
+myapp.directive('flexslider', function () {
+
+  return {
+    link: function (scope, element, attrs) {
+
+      element.flexslider({
+        animation: "slide"
+      });
+    }
+  }
+});
+
+myapp.directive('flexcaroslider', function () {
+
+  return {
+    link: function (scope, element, attrs) {
+
+      element.flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        minItems: 1,
+        maxItems: 2
+      });
+    }
+  }
+});
