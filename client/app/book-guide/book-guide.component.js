@@ -21,6 +21,5 @@ export default angular.module('triptoliUiApp.book-guide', [ngRoute])
   .component('bookGuide', {
     template: require('./book-guide.html'),
     controller: BookGuideComponent,
-    controllerAs: 'bookGuideCtrl'
   })
   .name;

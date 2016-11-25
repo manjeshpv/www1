@@ -7,9 +7,14 @@ import routes from './explore.routes';
 
 export class ExploreComponent {
   /*@ngInject*/
-  constructor() {
+  constructor($http) {
+    this.$http = $http
     this.message = 'Hello';
     myMap();
+  }
+
+  $onInit(){
+
   }
 
   myMap() {
