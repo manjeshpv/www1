@@ -4,7 +4,7 @@ import routing from './main.routes';
 
 export class MainController {
   $http;
-  awesomeThings = [];
+  poiByCity = [];
   newThing = '';
 
   /*@ngInject*/
@@ -14,11 +14,11 @@ export class MainController {
   }
 
   $onInit() {
-    this.$http.get('/api/things')
+    this.$http.get('http://192.168.1.8:3000/api/home-sections/23')
       .then(response => {
-        this.awesomeThings = response.data;
+        this.poiByCity = response.data;
+        console.log("Data is : ", this.poiByCity);
       });
-
 
   }
 
