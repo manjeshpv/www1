@@ -1,4 +1,3 @@
-'use strict';
 const angular = require('angular');
 const ngRoute = require('angular-route');
 
@@ -6,6 +5,7 @@ const ngRoute = require('angular-route');
 import routes from './explore.routes';
 
 export class ExploreComponent {
+  description='';
   /*@ngInject*/
   constructor($http) {
     this.$http = $http
@@ -14,12 +14,24 @@ export class ExploreComponent {
   }
 
   $onInit() {
-    this.$http.get('http://192.168.1.8:3000/api/home-sections/23')
+    this.$http.get('http://192.168.1.8:3000/api/poi-images/1')
       .then(response => {
-        this.poiByCity = response.data;
-        console.log("Data is : ", this.poiByCity);
+        this.poiImage = response.data;
+        console.log("Data is : ", this.poiImage);
       });
 
+    this.$http.get('http://192.168.1.8:3000/api/poi-general-infos/1')
+      .then(response => {
+        this.poiInfo = response.data;
+        this.description = this.poiInfo.Poi.short_description;
+        console.log("Data is : ", this.poiInfo);
+      });
+
+  }
+
+  showMore() {
+    console.log("test");
+    this.description = this.poiInfo.Poi.description;
   }
 
 
@@ -74,6 +86,7 @@ export class ExploreComponent {
     });
 
   }
+
   setLocation2(mylatLong, map) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
@@ -110,13 +123,14 @@ export class ExploreComponent {
     });
 
   }
+
+
 }
 
 export default angular.module('triptoliUiApp.explore', [ngRoute])
   .config(routes)
   .component('explore', {
     template: require('./explore.html'),
-    controller: ExploreComponent,
-    controllerAs: 'exploreCtrl'
+    controller: ExploreComponent
   })
   .name;

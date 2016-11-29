@@ -26,7 +26,7 @@
         style="width: 100%;height: 50px;position: absolute;bottom: 13%;left: 0px;z-index: 99">
         <div class="row">
           <div class="col-md-6 text-left">
-            <span style="font-size: 25px;color:#ffffff">Fort view Of Amer Fort</span>
+            <span style="font-size: 25px;color:#ffffff">Fort view Of {{$ctrl.poiInfo.Poi.name}}</span>
           </div>
           <div class="col-md-6 text-right">
             <span style="font-size: 20px;color:#ffffff">+ Add to itinerary</span>
@@ -48,14 +48,8 @@
             src="../../assets/images/audio_icon.png"><br>Audio</a></div>
         </div>
         <div style="padding: 20px;text-align: justify" class="row">
-          Earlier to the Kachwahas, Amer was a small place built by Meenas in the town they consecrated to Amba, the
-          Mother Goddess, whom they knew as 'Gatta Rani' or 'Queen of the Pass'.[7] The fort is originally believed to
-          have been built by Raja Man Singh during 967 CE.[16] Amer Fort, as it stands now, was built over the remnants
-          of
-          this earlier structure during the reign of Raja Man Singh, the Kachwaha King of Amber.[7][17] The structure
-          was
-          fully expanded by his descendant,.
-          <a href="#">Know More..</a>
+          {{$ctrl.description}}
+          <a ng-click="$ctrl.showMore()">Know More..</a>
         </div>
       </div>
       <div class="col-md-6">
@@ -71,13 +65,13 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
             <div class="col-md-6">Weekdays</div>
-            <div class="col-md-6">8:00 AM To 4:00 PM</div>
+            <div class="col-md-6">{{$ctrl.poiInfo.open}} To {{$ctrl.poiInfo.close}}</div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
             <div class="col-md-6">Weekends</div>
-            <div class="col-md-6">8:00 AM To 6:00 PM</div>
+            <div class="col-md-6">{{$ctrl.poiInfo.open}} To {{$ctrl.poiInfo.close}}</div>
           </div>
         </div>
         <div class="row">
@@ -85,7 +79,7 @@
             Location
           </div>
           <div class="col-md-4 col-md-offset-1">
-            Amber, Rajasthan, India
+            {{$ctrl.poiInfo.location}}
           </div>
         </div>
         <div class="row">
@@ -96,19 +90,19 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
             <div class="col-md-6">Indian</div>
-            <div class="col-md-6">Rs. 200/ per Person</div>
+            <div class="col-md-6">Rs. {{$ctrl.poiInfo.indian_fee}}/ per Person</div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
             <div class="col-md-6">Foreigners</div>
-            <div class="col-md-6">Rs. 600/ per Person</div>
+            <div class="col-md-6">Rs. {{$ctrl.poiInfo.foreigner_fee}}/ per Person</div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
             <div class="col-md-6">Students</div>
-            <div class="col-md-6">Rs. 150/ per Person</div>
+            <div class="col-md-6">Discount {{$ctrl.poiInfo.student_discount}}</div>
           </div>
         </div>
       </div>
