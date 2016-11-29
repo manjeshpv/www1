@@ -6,6 +6,8 @@ const ngRoute = require('angular-route');
 import routes from './itinerary-plan.routes';
 
 export class ItineraryPlanComponent {
+  itinerary = [];
+
   /*@ngInject*/
   constructor($http) {
     this.$http = $http;
@@ -17,14 +19,40 @@ export class ItineraryPlanComponent {
     this.$http.get('http://192.168.1.8:3000/api/pois/23')
       .then(response => {
         this.pois = response.data;
-
         console.log("All Pois are  : ", this.pois);
       });
+    if (localStorage.itinerary && JSON.parse(localStorage.itinerary).length > 0) {
+      this.itinerary = JSON.parse(localStorage.itinerary);
+    }
   }
 
   addToItinerary(poi) {
-    console.log('test app click',poi);
+    console.log('test app click now', poi);
+    this.itinerary.push(poi)
+    localStorage.itinerary = JSON.stringify(this.itinerary);
+
   }
+   getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited, window_close, monument_close, canVisit) {
+  return {
+    id: id,
+    day: day,
+    placename: placename,
+    latitude: lati,
+    longitude: longi,
+    vlatitude: vlati,
+    vlongitude: vlongi,
+    time: time,
+    distance: distance,
+    minExploTime: minExploTime,
+    maxExploTime: maxExploTime,
+    waitTime: waitTime,
+    categoryImg: categoryImg,
+    visited: visited,
+    window_close: window_close,
+    monument_close: monument_close,
+    can_visit: canVisit
+  }
+}
 
 
   myMap() {
