@@ -13,9 +13,15 @@ export class ExploreComponent {
     myMap();
   }
 
-  $onInit(){
+  $onInit() {
+    this.$http.get('http://192.168.1.8:3000/api/home-sections/23')
+      .then(response => {
+        this.poiByCity = response.data;
+        console.log("Data is : ", this.poiByCity);
+      });
 
   }
+
 
   myMap() {
     var mapCanvas = document.getElementById("map");
