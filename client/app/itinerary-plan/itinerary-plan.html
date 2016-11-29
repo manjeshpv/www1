@@ -144,77 +144,77 @@
       <div class="row">
         <div class="poiitems" id="style-7">
 
-          <div style="margin-top: 10px" class="row">
+          <div ng-repeat="poi in $ctrl.pois" style="margin-top: 10px" class="row">
             <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
               <div class="row">
-                <img class="poiimg" src="../../assets/images/jantar_mantar.jpg">
+                <img class="poiimg" src="../../assets/images/{{poi.image}}">
                 <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Jantar Mantar</a></div>
+                  <div class="col-md-12"> <a class="linkcolor" href="#">{{poi.name}}</a></div>
                 </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
+                <div class="addbutton"><a ng-click="$ctrl.addToItinerary(poi)"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
               </div>
             </div>
           </div>
 
-          <div style="margin-top: 10px" class="row">
-            <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
-              <div class="row">
-                <img class="poiimg" src="../../assets/images/birla_temple.jpg">
-                <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Birla Temple</a></div>
-                </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
-              </div>
-            </div>
-          </div>
+          <!--<div style="margin-top: 10px" class="row">-->
+            <!--<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">-->
+              <!--<div class="row">-->
+                <!--<img class="poiimg" src="../../assets/images/birla_temple.jpg">-->
+                <!--<div class="poiItemName ">-->
+                  <!--<div class="col-md-12"> <a class="linkcolor" href="#">Birla Temple</a></div>-->
+                <!--</div>-->
+                <!--<div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div style="margin-top: 10px" class="row">
-            <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
-              <div class="row">
-                <img class="poiimg" src="../../assets/images/jantar_mantar.jpg">
-                <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Jantar Mantar</a></div>
-                </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
-              </div>
-            </div>
-          </div>
+          <!--<div style="margin-top: 10px" class="row">-->
+            <!--<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">-->
+              <!--<div class="row">-->
+                <!--<img class="poiimg" src="../../assets/images/jantar_mantar.jpg">-->
+                <!--<div class="poiItemName ">-->
+                  <!--<div class="col-md-12"> <a class="linkcolor" href="#">Jantar Mantar</a></div>-->
+                <!--</div>-->
+                <!--<div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div style="margin-top: 10px" class="row">
-            <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
-              <div class="row">
-                <img class="poiimg" src="../../assets/images/pushkar.jpg">
-                <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Pushkar</a></div>
-                </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
-              </div>
-            </div>
-          </div>
+          <!--<div style="margin-top: 10px" class="row">-->
+            <!--<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">-->
+              <!--<div class="row">-->
+                <!--<img class="poiimg" src="../../assets/images/pushkar.jpg">-->
+                <!--<div class="poiItemName ">-->
+                  <!--<div class="col-md-12"> <a class="linkcolor" href="#">Pushkar</a></div>-->
+                <!--</div>-->
+                <!--<div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div style="margin-top: 10px" class="row">
-            <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
-              <div class="row">
-                <img class="poiimg" src="../../assets/images/hawa_mahal.jpg">
-                <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Hawa Mahal</a></div>
-                </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
-              </div>
-            </div>
-          </div>
+          <!--<div style="margin-top: 10px" class="row">-->
+            <!--<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">-->
+              <!--<div class="row">-->
+                <!--<img class="poiimg" src="../../assets/images/hawa_mahal.jpg">-->
+                <!--<div class="poiItemName ">-->
+                  <!--<div class="col-md-12"> <a class="linkcolor" href="#">Hawa Mahal</a></div>-->
+                <!--</div>-->
+                <!--<div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div style="margin-top: 10px" class="row">
-            <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">
-              <div class="row">
-                <img class="poiimg" src="../../assets/images/amer.jpg">
-                <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">Amer Fort</a></div>
-                </div>
-                <div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
-              </div>
-            </div>
-          </div>
+          <!--<div style="margin-top: 10px" class="row">-->
+            <!--<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 col-md-offset-2 text-center">-->
+              <!--<div class="row">-->
+                <!--<img class="poiimg" src="../../assets/images/amer.jpg">-->
+                <!--<div class="poiItemName ">-->
+                  <!--<div class="col-md-12"> <a class="linkcolor" href="#">Amer Fort</a></div>-->
+                <!--</div>-->
+                <!--<div class="addbutton"><a  href="#"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
         </div>
       </div>

@@ -7,9 +7,23 @@ import routes from './itinerary-plan.routes';
 
 export class ItineraryPlanComponent {
   /*@ngInject*/
-  constructor() {
+  constructor($http) {
+    this.$http = $http;
     this.message = 'Hello';
     myMap();
+  }
+
+  $onInit() {
+    this.$http.get('http://192.168.1.8:3000/api/pois/23')
+      .then(response => {
+        this.pois = response.data;
+
+        console.log("All Pois are  : ", this.pois);
+      });
+  }
+
+  addToItinerary(poi) {
+    console.log('test app click',poi);
   }
 
 
@@ -107,7 +121,6 @@ export default angular.module('triptoliUiApp.itinerary-plan', [ngRoute])
   .config(routes)
   .component('itineraryPlan', {
     template: require('./itinerary-plan.html'),
-    controller: ItineraryPlanComponent,
-    controllerAs: 'itineraryPlanCtrl'
+    controller: ItineraryPlanComponent
   })
   .name;
