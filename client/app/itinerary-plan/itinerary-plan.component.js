@@ -24,19 +24,87 @@ export class ItineraryPlanComponent {
     if (localStorage.itinerary && JSON.parse(localStorage.itinerary).length > 0) {
       this.itinerary = JSON.parse(localStorage.itinerary);
     }
+    localStorage.startLat = 26.8851417;
+    localStorage.startLong = 75.6504706;
   }
 
-  addToItinerary(poi) {
-    console.log('test app click now', poi);
-    this.itinerary.push(poi);
-    localStorage.itinerary = JSON.stringify(this.itinerary);
+  addButton(poi) {
+    this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon, poi.PoiGeneralInfo.close, poi.PoiGeneralInfo.open);
+  }
 
-    var mylatLong1 = new google.maps.LatLng(26.912484, 75.747331);
-    var mylatLong2 = new google.maps.LatLng(26.8921609, 75.8155296);
+  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg, window_close, monument_close) {
 
-    this.getTravelTime(mylatLong1, mylatLong2, function (timedis) {
-      console.log(timedis);
+    var from;
+    if (localStorage.itinerary) {
+      var itineraryData = JSON.parse(localStorage.itinerary);
+      var totalPoi = itineraryData.length;
+      from = new google.maps.LatLng(itineraryData[totalPoi - 1].latitude, itineraryData[totalPoi - 1].longitude);
+    }
+    else {
+      this.activateReadyItinerary();
+      from = new google.maps.LatLng(localStorage.startLat, localStorage.startLong);
+    }
+
+    var to = new google.maps.LatLng(lati, longi);
+
+    var point = this.getTravelTime(from, to, function (data) {
+      var time = data[0];
+      var distance = data[1];
+
+      var itineraryData = [];
+      var now = new Date();
+
+      if (localStorage.itinerary) {
+
+        itineraryData = JSON.parse(localStorage.itinerary);
+        var s = itineraryData[itineraryData.length - 1].time,
+          parts = s.match(/(\d+)\:(\d+) (\w+)/),
+          hours = /am/i.test(parts[3]) ? parseInt(parts[1], 10) : parseInt(parts[1], 10) + 12,
+          minutes = parseInt(parts[2], 10);
+        now.setHours(hours);
+        now.setMinutes(minutes);
+      }
+
+      var time = parseInt(time.split(' ')[0])
+      var maxTime = parseInt(maxExploTime);
+      var wait = parseInt(waitTime)
+      now.setMinutes(now.getMinutes() + time + maxTime + wait);
+      var reachdate = $filter('date')(now, 'yyyy-MM-dd');
+      var reachtime = $filter('date')(now, 'hh:mm a');
+
+      checkPoiExist(itineraryData, id, function (flag) {
+
+        if (flag) {
+
+          alert(" Already Exist In Itinerary !");
+
+        }
+        else {
+          var model;
+          model = getModelItem(id, $rootScope.selectedDay.day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
+          var itineraryData = JSON.parse(localStorage.itinerary);
+          itineraryData.push(model);
+
+          localStorage.itinerary = JSON.stringify(itineraryData);
+          this.itinerary=itineraryData;
+
+        }
+      });
+
     });
+
+  }
+
+  checkPoiExist(itinerary, id, callback) {
+    var flag = false;
+    var data = itinerary.find(function (ele) {
+
+      if (ele.id == id) {
+        flag = true;
+      }
+
+    });
+    callback(flag);
   }
 
   getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited, window_close, monument_close, canVisit) {
@@ -59,6 +127,13 @@ export class ItineraryPlanComponent {
       monument_close: monument_close,
       can_visit: canVisit
     }
+  }
+
+  activateReadyItinerary() {
+    var model = this.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
+    var arr = [];
+    arr[0] = model;
+    localStorage.itinerary = JSON.stringify(arr);
   }
 
   getTravelTime(from, to, callback) {
@@ -115,9 +190,7 @@ export class ItineraryPlanComponent {
 
     var mylatLong2 = new google.maps.LatLng(26.8921609, 75.8155296);
     setLocation2(mylatLong2, map);
-    getTravelTime(mylatLong1, mylatLong2, function (timedis) {
-      console.log(timedis);
-    });
+
   }
 
   setLocation1(mylatLong, map) {
