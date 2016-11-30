@@ -4,6 +4,7 @@ const ngRoute = require('angular-route');
 
 
 import routes from './itinerary-plan.routes';
+import { DatePipe } from '@angular/common';
 
 export class ItineraryPlanComponent {
   itinerary = [];
@@ -69,8 +70,10 @@ export class ItineraryPlanComponent {
       var maxTime = parseInt(maxExploTime);
       var wait = parseInt(waitTime)
       now.setMinutes(now.getMinutes() + time + maxTime + wait);
-      var reachdate = $filter('date')(now, 'yyyy-MM-dd');
-      var reachtime = $filter('date')(now, 'hh:mm a');
+      var formatted = new DatePipe().transform(raw, 'yyyy-MM-dd');
+      console.log(formatted);
+      // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
+      // var reachtime = $filter('date')(now, 'hh:mm a');
 
       checkPoiExist(itineraryData, id, function (flag) {
 
