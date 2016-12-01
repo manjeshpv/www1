@@ -4,7 +4,7 @@ const ngRoute = require('angular-route');
 
 
 import routes from './itinerary-plan.routes';
-import { DatePipe } from '@angular/common';
+
 
 export class ItineraryPlanComponent {
   itinerary = [];
@@ -70,10 +70,10 @@ export class ItineraryPlanComponent {
       var maxTime = parseInt(maxExploTime);
       var wait = parseInt(waitTime)
       now.setMinutes(now.getMinutes() + time + maxTime + wait);
-      var formatted = new DatePipe().transform(raw, 'yyyy-MM-dd');
-      console.log(formatted);
+
       // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
       // var reachtime = $filter('date')(now, 'hh:mm a');
+      var reachtime = this.displayTime(now);
 
       checkPoiExist(itineraryData, id, function (flag) {
 
@@ -89,13 +89,33 @@ export class ItineraryPlanComponent {
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
-          this.itinerary=itineraryData;
+          this.itinerary = itineraryData;
 
         }
       });
 
     });
+  }
 
+  displayTime(currentTime) {
+    var str = "";
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    var seconds = currentTime.getSeconds()
+
+    if (minutes < 10) {
+      minutes = "0" + minutes
+    }
+    if (seconds < 10) {
+      seconds = "0" + seconds
+    }
+    str += hours + ":" + minutes + ":" + seconds + " ";
+    if (hours > 11) {
+      str += "PM"
+    } else {
+      str += "AM"
+    }
+    return str;
   }
 
   checkPoiExist(itinerary, id, callback) {
@@ -271,10 +291,25 @@ export class ItineraryPlanComponent {
   }
 
 }
-export default angular.module('triptoliUiApp.itinerary-plan', [ngRoute])
+
+export
+default
+angular
+  .module(
+    'triptoliUiApp.itinerary-plan'
+    ,
+    [ngRoute]
+  )
   .config(routes)
-  .component('itineraryPlan', {
-    template: require('./itinerary-plan.html'),
-    controller: ItineraryPlanComponent
-  })
+
+  .component(
+    'itineraryPlan'
+    , {
+      template: require
+      (
+        './itinerary-plan.html'
+      ),
+      controller: ItineraryPlanComponent
+    }
+  )
   .name;
