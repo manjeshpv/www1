@@ -73,18 +73,17 @@ export class ItineraryPlanComponent {
 
       // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
       // var reachtime = $filter('date')(now, 'hh:mm a');
+
       var reachtime = this.displayTime(now);
 
-      checkPoiExist(itineraryData, id, function (flag) {
+      this.checkPoiExist(itineraryData, id, function (flag) {
 
         if (flag) {
-
           alert(" Already Exist In Itinerary !");
-
         }
         else {
           var model;
-          model = getModelItem(id, $rootScope.selectedDay.day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
+          model = this.getModelItem(id, $rootScope.selectedDay.day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
