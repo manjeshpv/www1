@@ -4,17 +4,19 @@ const ngRoute = require('angular-route');
 
 
 import routes from './itinerary-plan.routes';
-// import iti from './itinerary';
+// import {iti} from './itinerary';
 
 
 export class ItineraryPlanComponent {
   itinerary = [];
-// loiti=new Itinerary();
+ // loiti=new Itinerary();
+
   /*@ngInject*/
   constructor($http) {
     this.$http = $http;
     this.message = 'Hello';
     myMap();
+
   }
 
   $onInit() {

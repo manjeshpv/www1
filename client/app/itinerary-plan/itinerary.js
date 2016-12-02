@@ -1,6 +1,5 @@
-/**
- * Created by I5 6tg on 12/2/2016.
- */
+'use strict';
+const angular = require('angular');
 export class Itinerary {
   /*@ngInject*/
   constructor($http) {
