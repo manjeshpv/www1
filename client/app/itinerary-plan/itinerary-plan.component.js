@@ -8,15 +8,25 @@ import {Itinerary} from './itinerary.logic';
 
 
 export class ItineraryPlanComponent {
- itinerary = [];
+  itinerary = [];
+  loiti = new Itinerary();
+  itineraryMarkers = [];
 
+  mapCanvas = document.getElementById("map");
+  mapOptions = {
+    center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
+  };
+  map = new google.maps.Map(this.mapCanvas, this.mapOptions);
+
+  routes = [];
+  markers = [];
 
   /*@ngInject*/
   constructor($http) {
     this.$http = $http;
     this.message = 'Hello';
-    this.itinerary=[];
-    myMap();
+    this.itinerary = [];
+    // myMap();
 
   }
 
@@ -28,6 +38,9 @@ export class ItineraryPlanComponent {
       });
     if (localStorage.itinerary && JSON.parse(localStorage.itinerary).length > 0) {
       this.itinerary = JSON.parse(localStorage.itinerary);
+      this.setItineraryMarkers(this.itinerary);
+      this.drawLine();
+      this.optimizeItineraryZoom();
     }
     localStorage.startLat = 26.8851417;
     localStorage.startLong = 75.6504706;
@@ -52,7 +65,7 @@ export class ItineraryPlanComponent {
 
     var to = new google.maps.LatLng(lati, longi);
 
-    var point = this.getTravelTime(from, to, function (data) {
+    var point = this.getTravelTime(from, to, (data) => {
       var time = data[0];
       var distance = data[1];
 
@@ -77,25 +90,26 @@ export class ItineraryPlanComponent {
 
       // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
       // var reachtime = $filter('date')(now, 'hh:mm a');
-      var loiti = new Itinerary();
-      loiti.calling();
-      var reachtime = loiti.displayTime(now);
 
-      loiti.checkPoiExist(itineraryData, id, function (flag) {
+      this.loiti.calling();
+      var reachtime = this.loiti.displayTime(now);
+
+      this.loiti.checkPoiExist(itineraryData, id, (flag) => {
 
         if (flag) {
           alert(" Already Exist In Itinerary !");
         }
         else {
           var model;
-          model = loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
+          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
-
-          this.itinerary= itineraryData;
-
+          this.itinerary = itineraryData;
+          this.setItineraryMarkers(itineraryData);
+          this.drawLine();
+          this.optimizeItineraryZoom();
         }
       });
 
@@ -105,8 +119,7 @@ export class ItineraryPlanComponent {
 
 
   activateReadyItinerary() {
-    var loiti = new Itinerary();
-    var model = loiti.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
+    var model = this.loiti.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
     var arr = [];
     arr[0] = model;
     localStorage.itinerary = JSON.stringify(arr);
@@ -159,36 +172,19 @@ export class ItineraryPlanComponent {
     var mapOptions = {
       center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
     };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-
-    var mylatLong1 = new google.maps.LatLng(26.912484, 75.747331);
-    setLocation1(mylatLong1, map);
-
-    var mylatLong2 = new google.maps.LatLng(26.8921609, 75.8155296);
-    setLocation2(mylatLong2, map);
-
+    this.map = new google.maps.Map(mapCanvas, mapOptions);
   }
 
-  setLocation1(mylatLong, map) {
+  setLocation(mylatLong, poi) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
-      map: map,
-      title: "Me",
+      map: this.map,
+      title: poi.placename,
       zIndex: 1,
 
     });
-    // markers.push(myLocation);
-    var contentString = '<div class="event_one">' +
-      '<div class="event_item">' +
-      '<img src="assets/images/event_1.jpg">' +
-      '<div class="event_desc">' +
-      '<h6>Musical Night</h6>' +
-      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
-      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
-      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
-      '</div>' +
-      '</div>' +
-      '</div>';
+     this.markers.push(myLocation);
+    var contentString = '<div style="background-color: #00A8FF;padding: 5px;color:#ffffff">' + poi.placename + '</div>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -206,42 +202,115 @@ export class ItineraryPlanComponent {
 
   }
 
-  setLocation2(mylatLong, map) {
-    var myLocation = new google.maps.Marker({
-      position: mylatLong,
-      map: map,
-      title: "Me",
-      zIndex: 1,
 
-    });
-    // markers.push(myLocation);
-    var contentString = '<div class="event_one">' +
-      '<div class="event_item">' +
-      '<img src="assets/images/event_1.jpg">' +
-      '<div class="event_desc">' +
-      '<h6>Musical Night</h6>' +
-      '<p>Nucleya, Indian Ocean, Dualist Inquiry, Ankur & The Ghalat Family, Prateek Kuhad Live</p>' +
-      '<a href="javascript:;" class="btn btn-event">Know More</a>' +
-      '<a href="javascript:;" class="btn btn-event">Book Now</a>' +
-      '</div>' +
-      '</div>' +
-      '</div>';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+  setItineraryMarkers(itineraryData) {
+    itineraryData.forEach((item, index) => {
+      var mylatLong = new google.maps.LatLng(item.latitude, item.longitude);
+      this.setLocation(mylatLong, item);
+    })
+  }
 
-    google.maps.event.addListener(myLocation, 'click', function () {
-      infowindow.open(map, myLocation);
-      $(".gm-style-iw").parent().addClass("transparentClass");
-      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
-    });
 
-    google.maps.event.addListener(myLocation, 'dragend', function (event) {
-      console.log(this.getPosition().lat());
-      console.log(this.getPosition().lng());
-    });
+  drawLine() {
+
+    // if (lastpath) {
+    //   lastpath.setMap(null);
+    // }
+
+    if (this.routes.length > 0) {
+      for (var i = 0; i < this.routes.length; i++) {
+        this.routes[i].setMap(null);
+      }
+
+    }
+    // lastpath.setPath([]);
+    var colorsLine = ["#9E9E9E", "#2196F3", "#009688", "#4CAF50", "#E65100", "#CDDC39", "#651FFF", "#F06292"];
+    if (localStorage.itinerary) {
+      var readyItineraryData = JSON.parse(localStorage.itinerary);
+      // var itineraryOfDay = $filter('filter')(readyItineraryData, {day: $rootScope.selectedDay.day});
+      // itineraryOfDay.unshift(readyItineraryData[0]);
+      var drowdata = readyItineraryData;
+
+      console.log("drawData is : ", readyItineraryData);
+
+      for (var i = 0; i < drowdata.length - 1; i++) {
+
+        var start = new google.maps.LatLng(drowdata[i].latitude, drowdata[i].longitude);
+        var end = new google.maps.LatLng(drowdata[i + 1].latitude, drowdata[i + 1].longitude);
+
+        if (i == 0) {
+          var start = new google.maps.LatLng(drowdata[i].latitude, drowdata[i].longitude);
+          var end = new google.maps.LatLng(drowdata[i + 1].latitude, drowdata[i + 1].longitude);
+
+          var flightPathShadow = new google.maps.Polyline({
+            path: [start, end],
+            strokeColor: '#ffffff',
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+            map: this.map
+          });
+          this.routes.push(flightPathShadow);
+
+          var startPath = new google.maps.Polyline({
+            path: [start, end],
+            strokeColor: '#00C853',
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            map: this.map
+          });
+          this.routes.push(startPath);
+        }
+        else {
+
+
+          var flightPathShadow = new google.maps.Polyline({
+            path: [start, end],
+            strokeColor: '#ffffff',
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+            map: this.map
+          });
+          this.routes.push(flightPathShadow);
+
+          var paths = new google.maps.Polyline({
+            path: [start, end],
+            strokeColor: '#FF5722',
+            strokeOpacity: 1.0,
+            strokeWeight: 3,
+            map: this.map
+          });
+
+          this.routes.push(paths);
+        }
+      }
+
+      // var start = new google.maps.LatLng(drowdata[0].latitude, drowdata[0].longitude);
+      // var end = new google.maps.LatLng(drowdata[drowdata.length - 1].latitude, drowdata[drowdata.length - 1].longitude);
+      //
+      // lastpath = new google.maps.Polyline({
+      //   path: [start, end],
+      //   strokeColor: "#FF0000",
+      //   strokeOpacity: 1.0,
+      //   strokeWeight: 4,
+      //   map: map
+      // });
+
+
+    }
 
   }
+
+  clearAllLine() {
+    if (this.routes.length > 0) {
+      for (var i = 0; i < this.routes.length; i++) {
+        this.routes[i].setMap(null);
+      }
+    }
+  }
+  optimizeItineraryZoom() {
+  this.map.setZoom(10);
+
+}
 
 }
 
