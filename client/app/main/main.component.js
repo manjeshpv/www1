@@ -1,6 +1,10 @@
 import angular from 'angular';
 const ngRoute = require('angular-route');
 import routing from './main.routes';
+// import {Component} from 'angular2/core';
+// import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+// import {Slide} from '../directives/slide.component';
+// import {Carousel} from '../directives/carousel.component';
 
 export class MainController {
   $http;
@@ -135,5 +139,6 @@ export default angular.module('triptoliUiApp.main', [ngRoute])
   .component('main', {
     template: require('./main.html'),
     controller: MainController
+
   })
   .name;
