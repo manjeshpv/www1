@@ -4,17 +4,18 @@ const ngRoute = require('angular-route');
 
 
 import routes from './itinerary-plan.routes';
-// import {iti} from './itinerary';
+import {Itinerary} from './itinerary.logic';
 
 
 export class ItineraryPlanComponent {
-  itinerary = [];
- // loiti=new Itinerary();
+ itinerary = [];
+
 
   /*@ngInject*/
   constructor($http) {
     this.$http = $http;
     this.message = 'Hello';
+    this.itinerary=[];
     myMap();
 
   }
@@ -76,86 +77,36 @@ export class ItineraryPlanComponent {
 
       // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
       // var reachtime = $filter('date')(now, 'hh:mm a');
+      var loiti = new Itinerary();
+      loiti.calling();
+      var reachtime = loiti.displayTime(now);
 
-      var reachtime = this.displayTime(now);
-
-      this.checkPoiExist(itineraryData, id, function (flag) {
+      loiti.checkPoiExist(itineraryData, id, function (flag) {
 
         if (flag) {
           alert(" Already Exist In Itinerary !");
         }
         else {
           var model;
-          model = this.getModelItem(id, $rootScope.selectedDay.day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
+          model = loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
-          this.itinerary = itineraryData;
+
+          this.itinerary= itineraryData;
 
         }
       });
 
     });
+
   }
 
-  displayTime(currentTime) {
-    var str = "";
-    var hours = currentTime.getHours()
-    var minutes = currentTime.getMinutes()
-    var seconds = currentTime.getSeconds()
-
-    if (minutes < 10) {
-      minutes = "0" + minutes
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds
-    }
-    str += hours + ":" + minutes + ":" + seconds + " ";
-    if (hours > 11) {
-      str += "PM"
-    } else {
-      str += "AM"
-    }
-    return str;
-  }
-
-  checkPoiExist(itinerary, id, callback) {
-    var flag = false;
-    var data = itinerary.find(function (ele) {
-
-      if (ele.id == id) {
-        flag = true;
-      }
-
-    });
-    callback(flag);
-  }
-
-  getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited, window_close, monument_close, canVisit) {
-    return {
-      id: id,
-      day: day,
-      placename: placename,
-      latitude: lati,
-      longitude: longi,
-      vlatitude: vlati,
-      vlongitude: vlongi,
-      time: time,
-      distance: distance,
-      minExploTime: minExploTime,
-      maxExploTime: maxExploTime,
-      waitTime: waitTime,
-      categoryImg: categoryImg,
-      visited: visited,
-      window_close: window_close,
-      monument_close: monument_close,
-      can_visit: canVisit
-    }
-  }
 
   activateReadyItinerary() {
-    var model = this.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
+    var loiti = new Itinerary();
+    var model = loiti.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
     var arr = [];
     arr[0] = model;
     localStorage.itinerary = JSON.stringify(arr);
@@ -311,7 +262,8 @@ angular
       (
         './itinerary-plan.html'
       ),
-      controller: ItineraryPlanComponent
+      controller: ItineraryPlanComponent,
+      providers: [Itinerary]
     }
   )
   .name;
