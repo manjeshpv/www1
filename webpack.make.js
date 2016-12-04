@@ -41,6 +41,8 @@ module.exports = function makeWebpackConfig(options) {
             app: './client/app/app.js',
             polyfills: './client/polyfills.js',
             vendor: [
+                'jquery',
+                'flexslider',
                 'angular',
                 'angular-animate',
                 'angular-aria',
@@ -139,7 +141,7 @@ module.exports = function makeWebpackConfig(options) {
             loader: 'babel',
             include: [
                 path.resolve(__dirname, 'client/'),
-                path.resolve(__dirname, 'node_modules/lodash-es/')
+                path.resolve(__dirname, 'node_modules/lodash-es/'),
             ]
         }, {
             // TS LOADER
@@ -238,6 +240,13 @@ module.exports = function makeWebpackConfig(options) {
          * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
          */
         new ForkCheckerPlugin(),
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+        }),
+        new webpack.ProvidePlugin({
+          flexslider: "flexslider"
+        }),
 
         // Reference: https://github.com/webpack/extract-text-webpack-plugin
         // Extract css files

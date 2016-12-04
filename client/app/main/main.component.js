@@ -12,7 +12,15 @@ export class MainController {
   newThing = '';
 
   /*@ngInject*/
-  constructor($http) {
+  constructor($http, $scope) {
+
+    $scope.mySlides = [
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+    ]
+
     this.$http = $http;
     myMap();
   }

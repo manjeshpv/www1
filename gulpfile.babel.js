@@ -339,7 +339,7 @@ gulp.task('serve', cb => {
     runSequence(
         [
             'clean:tmp',
-            'lint:scripts',
+            // 'lint:scripts',
             'inject',
             'copy:fonts:dev',
             'env:all'
@@ -355,7 +355,7 @@ gulp.task('serve:debug', cb => {
     runSequence(
         [
             'clean:tmp',
-            'lint:scripts',
+            // 'lint:scripts',
             'inject',
             'copy:fonts:dev',
             'env:all'
