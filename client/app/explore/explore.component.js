@@ -7,10 +7,16 @@ import routes from './explore.routes';
 export class ExploreComponent {
   description='';
   /*@ngInject*/
-  constructor($http) {
+  constructor($http,$scope) {
     this.$http = $http
     this.message = 'Hello';
     myMap();
+    $scope.mySlides = [
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+    ]
   }
 
   $onInit() {

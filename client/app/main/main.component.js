@@ -1,10 +1,6 @@
 import angular from 'angular';
 const ngRoute = require('angular-route');
 import routing from './main.routes';
-// import {Component} from 'angular2/core';
-// import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-// import {Slide} from '../directives/slide.component';
-// import {Carousel} from '../directives/carousel.component';
 
 export class MainController {
   $http;
@@ -15,10 +11,10 @@ export class MainController {
   constructor($http, $scope) {
 
     $scope.mySlides = [
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+      '../../assets/images/banner/banner1.jpg',
+      '../../assets/images/banner/banner2.jpg',
+      '../../assets/images/banner/banner3.jpg',
+      '../../assets/images/banner/banner4.jpg'
     ]
 
     this.$http = $http;

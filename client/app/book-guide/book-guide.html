@@ -2,22 +2,12 @@
   <div class="row">
     <div class="col-md-12 padding_no">
 
-      <div  class="flexslider" flexslider>
-        <ul  class="slides flxslide">
-          <li class="flxslide">
-            <img  src="../../assets/images/amer.jpg">
-          </li>
-          <li class="flxslide">
-            <img src="../../assets/images/amer.jpg">
-          </li>
-          <li class="flxslide">
-            <img src="../../assets/images/amer.jpg">
-          </li>
-          <li class="flxslide">
-            <img src="../../assets/images/amer.jpg">
-          </li>
-        </ul>
-      </div>
+      <flex-slider flex-slide="s in mySlides">
+        <li>
+          <img ng-src='{{s}}'>
+        </li>
+
+      </flex-slider>
 
       <div
         style="width: 100%;height: 50px;background-color: #000000;opacity: 0.5;position: absolute;bottom:13%;left: 0px;z-index: 9">

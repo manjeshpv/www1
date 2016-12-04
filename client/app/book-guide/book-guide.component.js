@@ -1,14 +1,18 @@
 'use strict';
 const angular = require('angular');
 const ngRoute = require('angular-route');
-
-
 import routes from './book-guide.routes';
 
 export class BookGuideComponent {
   /*@ngInject*/
-  constructor() {
+  constructor($scope) {
     this.message = 'Hello';
+    $scope.mySlides = [
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+      'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+    ]
   }
 
   onClick() {

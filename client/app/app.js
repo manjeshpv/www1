@@ -34,20 +34,20 @@ import util from '../components/util/util.module';
 import './app.css';
 
 angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
-  footer, main,explore,itineraryPlan,bookGuide,accountSetting,myTrip,bookingStay,profileComponent,contact, constants, util
+  footer, main, explore, itineraryPlan, bookGuide, accountSetting, myTrip, bookingStay, profileComponent, contact, constants, util
 ])
   .config(routeConfig)
   .directive('flexSlider', [
-    '$parse', '$timeout', function($parse, $timeout) {
+    '$parse', '$timeout', function ($parse, $timeout) {
       return {
         restrict: 'AE',
         scope: false,
         replace: true,
         transclude: true,
         template: '<div class="flexslider-container"></div>',
-        compile: function(element, attr, linker) {
+        compile: function (element, attr, linker) {
 
-          return function($scope, $element) {
+          return function ($scope, $element) {
 
             var addSlide, collectionString, flexsliderDiv, getTrackFromItem, indexString, match, removeSlide, slidesItems, trackBy;
             match = (attr.slide || attr.flexSlide).match(/^\s*(.+)\s+in\s+(.*?)(?:\s+track\s+by\s+(.+?))?\s*$/);
@@ -56,14 +56,14 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
             trackBy = angular.isDefined(match[3]) ? $parse(match[3]) : $parse("" + indexString);
             flexsliderDiv = null;
             slidesItems = {};
-            getTrackFromItem = function(collectionItem, index) {
+            getTrackFromItem = function (collectionItem, index) {
               var locals;
               locals = {};
               locals[indexString] = collectionItem;
               locals['$index'] = index;
               return trackBy($scope, locals);
             };
-            addSlide = function(collectionItem, index, callback) {
+            addSlide = function (collectionItem, index, callback) {
               var childScope, track;
               track = getTrackFromItem(collectionItem, index);
               if (slidesItems[track] != null) {
@@ -72,7 +72,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
               childScope = $scope.$new();
               childScope[indexString] = collectionItem;
               childScope['$index'] = index;
-              return linker(childScope, function(clone) {
+              return linker(childScope, function (clone) {
                 var slideItem;
                 slideItem = {
                   collectionItem: collectionItem,
@@ -83,7 +83,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
                 return typeof callback === "function" ? callback(slideItem) : void 0;
               });
             };
-            removeSlide = function(collectionItem, index) {
+            removeSlide = function (collectionItem, index) {
               var slideItem, track;
               track = getTrackFromItem(collectionItem, index);
               slideItem = slidesItems[track];
@@ -94,7 +94,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
               slideItem.childScope.$destroy();
               return slideItem;
             };
-            return $scope.$watchCollection(collectionString, function(collection, oldCollection) {
+            return $scope.$watchCollection(collectionString, function (collection, oldCollection) {
               var attrKey, attrVal, c, currentSlidesLength, e, i, idx, n, options, slider, slides, t, toAdd, toRemove, trackCollection, _i, _j, _k, _l, _len, _len1, _len2, _len3;
               if (!((collection != null ? collection.length : void 0) || (oldCollection != null ? oldCollection.length : void 0))) {
                 return;
@@ -110,7 +110,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
                   c = collection[i];
                   trackCollection[getTrackFromItem(c, i)] = c;
                 }
-                toAdd = (function() {
+                toAdd = (function () {
                   var _j, _len1, _results;
                   _results = [];
                   for (i = _j = 0, _len1 = collection.length; _j < _len1; i = ++_j) {
@@ -124,7 +124,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
                   }
                   return _results;
                 })();
-                toRemove = (function() {
+                toRemove = (function () {
                   var _results;
                   _results = [];
                   for (t in slidesItems) {
@@ -146,11 +146,11 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
                   for (_k = 0, _len2 = toAdd.length; _k < _len2; _k++) {
                     e = toAdd[_k];
                     idx = e.index;
-                    addSlide(e.value, idx, function(item) {
+                    addSlide(e.value, idx, function (item) {
                       if (idx === currentSlidesLength) {
                         idx = void 0;
                       }
-                      return $scope.$evalAsync(function() {
+                      return $scope.$evalAsync(function () {
                         return slider.addSlide(item.element, idx);
                       });
                     });
@@ -168,7 +168,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
               $element.append(flexsliderDiv);
               for (i = _l = 0, _len3 = collection.length; _l < _len3; i = ++_l) {
                 c = collection[i];
-                addSlide(c, i, function(item) {
+                addSlide(c, i, function (item) {
                   return slides.append(item.element);
                 });
               }
@@ -187,11 +187,11 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
                   continue;
                 }
                 if (attrKey === 'start' || attrKey === 'before' || attrKey === 'after' || attrKey === 'end' || attrKey === 'added' || attrKey === 'removed') {
-                  options[attrKey] = (function(attrVal) {
+                  options[attrKey] = (function (attrVal) {
                     var f;
                     f = $parse(attrVal);
-                    return function(slider) {
-                      return $scope.$apply(function() {
+                    return function (slider) {
+                      return $scope.$apply(function () {
                         return f($scope, {
                           '$slider': {
                             element: slider
@@ -214,7 +214,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiB
               if (options.sliderId) {
                 flexsliderDiv.attr('id', options.sliderId);
               }
-              return $timeout((function() {
+              return $timeout((function () {
                 return flexsliderDiv.flexslider(options);
               }), 0);
             });
