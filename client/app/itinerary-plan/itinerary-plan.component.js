@@ -31,7 +31,7 @@ export class ItineraryPlanComponent {
   }
 
   $onInit() {
-    this.$http.get('http://192.168.1.8:3000/api/pois/23')
+    this.$http.get('http://localhost:3000/api/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);
