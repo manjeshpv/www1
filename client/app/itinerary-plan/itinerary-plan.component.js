@@ -22,7 +22,8 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter) {
+  constructor($http, $filter,$scope) {
+    this.$scope=$scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
@@ -45,13 +46,23 @@ export class ItineraryPlanComponent {
     }
     localStorage.startLat = 26.8851417;
     localStorage.startLong = 75.6504706;
+
+    if(!localStorage.day)
+    {
+      localStorage.day=1;
+      this.$scope.day=localStorage.day;
+    }
+    else {
+      this.$scope.day=localStorage.day;
+    }
+
   }
 
   addButton(poi) {
     this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon, poi.image);
   }
 
-  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg,image) {
+  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg, image) {
 
     var from;
     if (localStorage.itinerary) {
@@ -99,7 +110,8 @@ export class ItineraryPlanComponent {
         }
         else {
           var model;
-          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
+          var day=localStorage.day;
+          model = this.loiti.getModelItem(id, "day"+day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
@@ -254,6 +266,33 @@ export class ItineraryPlanComponent {
 
   }
 
+  previousDay() {
+    console.log('previousDay()');
+    var day=parseInt(localStorage.day)
+    if(day==1)
+    {
+
+    }
+    else {
+      day=day-1;
+      this.$scope.day=localStorage.day=day;
+
+      var fullItinerary = JSON.parse(localStorage.itinerary);
+      this.itinerary = this.$filter('filter')(fullItinerary, {day:'day'+day});
+      this.itinerary.unshift(fullItinerary[0]);
+    }
+  }
+
+  nextDay() {
+    console.log('NextDay()');
+    var day=parseInt(localStorage.day)
+    day=day+1;
+    this.$scope.day=localStorage.day=day;
+
+    var fullItinerary = JSON.parse(localStorage.itinerary);
+    this.itinerary = this.$filter('filter')(fullItinerary, {day:'day'+day});
+    this.itinerary.unshift(fullItinerary[0]);
+  }
 }
 
 export
