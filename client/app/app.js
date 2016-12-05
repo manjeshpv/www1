@@ -36,6 +36,10 @@ import './app.css';
 angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
   footer, main, explore, itineraryPlan, bookGuide, accountSetting, myTrip, bookingStay, profileComponent, contact, constants, util
 ])
+  .constant("APP_CONFIG", {
+    baseApiUrl: "'http://localhost:3000/api"
+    //baseApiUrl: "http://localhost:81/incityapi"
+  })
   .config(routeConfig)
   .directive('flexSlider', [
     '$parse', '$timeout', function ($parse, $timeout) {

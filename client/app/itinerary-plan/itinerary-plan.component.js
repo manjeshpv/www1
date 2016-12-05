@@ -11,7 +11,7 @@ export class ItineraryPlanComponent {
   itinerary = [];
   loiti = new Itinerary();
   itineraryMarkers = [];
-
+url="";
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -22,18 +22,19 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter,$scope) {
+  constructor($http, $filter,$scope,APP_CONFIG) {
     this.$scope=$scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
     this.itinerary = [];
+    this.url=APP_CONFIG.baseApiUrl;
     // myMap();
 
   }
 
   $onInit() {
-    this.$http.get('http://localhost:3000/api/pois/23')
+    this.$http.get(this.url+'/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);

@@ -7,6 +7,7 @@ import routes from './explore.routes';
 export class ExploreComponent {
   description = '';
   poiInfo=[];
+  url="";
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -14,22 +15,23 @@ export class ExploreComponent {
   map = new google.maps.Map(this.mapCanvas, this.mapOptions);
 
   /*@ngInject*/
-  constructor($http, $scope, $routeParams) {
+  constructor($http, $scope, $routeParams,APP_CONFIG) {
     this.$routeParams = $routeParams;
     this.$scope=$scope;
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
+    this.url=APP_CONFIG.baseApiUrl;
   }
 
   $onInit() {
-    this.$http.get('http://192.168.1.2:3000/api/poi-images/' + this.$routeParams.poiid)
+    this.$http.get(this.url+'/poi-images/' + this.$routeParams.poiid)
       .then(response => {
         this.$scope.poiImages = response.data;
         console.log("Poi Images : ", this.$scope.poiImages);
       });
 
-    this.$http.get('http://192.168.1.2:3000/api/poi-general-infos/' + this.$routeParams.poiid)
+    this.$http.get(this.url+'/poi-general-infos/' + this.$routeParams.poiid)
       .then(response => {
         this.poiInfo = response.data;
         this.description = this.poiInfo.Poi.short_description;

@@ -7,26 +7,27 @@ export class MainController {
   $http;
   poiByCity = [];
   newThing = '';
+  url="";
   loiti = new Itinerary();
 
   /*@ngInject*/
-  constructor($http, $scope,$filter) {
+  constructor($http, $scope,$filter,APP_CONFIG) {
     this.$filter=$filter;
     this.$http = $http;
     myMap();
     this.$scope = $scope;
-
+    this.url=APP_CONFIG.baseApiUrl;
   }
 
   $onInit() {
 
-    this.$http.get('http://192.168.1.2:3000/api/banners')
+    this.$http.get(this.url+'/banners')
       .then(response => {
         this.$scope.mySlides = response.data;
         console.log("Data is : ", this.$scope.mySlides);
       });
 
-    this.$http.get('http://192.168.1.2:3000/api/home-sections/23')
+    this.$http.get(this.url+'/home-sections/23')
       .then(response => {
         this.$scope.poiByCity = response.data;
         console.log("Data is : ", this.$scope.poiByCity);
