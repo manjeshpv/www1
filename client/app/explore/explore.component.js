@@ -16,23 +16,17 @@ export class ExploreComponent {
   /*@ngInject*/
   constructor($http, $scope, $routeParams) {
     this.$routeParams = $routeParams;
+    this.$scope=$scope;
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
-
-    $scope.mySlides = [
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
-      'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
-    ]
   }
 
   $onInit() {
     this.$http.get('http://192.168.1.2:3000/api/poi-images/' + this.$routeParams.poiid)
       .then(response => {
-        this.poiImage = response.data;
-        console.log("Data is : ", this.poiImage);
+        this.$scope.poiImages = response.data;
+        console.log("Poi Images : ", this.$scope.poiImages);
       });
 
     this.$http.get('http://192.168.1.2:3000/api/poi-general-infos/' + this.$routeParams.poiid)

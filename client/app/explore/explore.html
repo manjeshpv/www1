@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 padding_no">
-      <flex-slider flex-slide="s in mySlides">
+      <flex-slider flex-slide="image in poiImages track by $index">
         <li>
-          <img style="max-height: 400px !important;" ng-src='{{s}}'>
+          <img style="max-height: 400px !important;" ng-src='../../assets/images/poi-banner/{{image.image}}'>
         </li>
 
       </flex-slider>
