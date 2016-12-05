@@ -5,8 +5,8 @@ const ngRoute = require('angular-route');
 import routes from './explore.routes';
 
 export class ExploreComponent {
-  description='';
-
+  description = '';
+  poiInfo=[];
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -14,9 +14,9 @@ export class ExploreComponent {
   map = new google.maps.Map(this.mapCanvas, this.mapOptions);
 
   /*@ngInject*/
-  constructor($http,$scope,$routeParams) {
-    this.$routeParams=$routeParams;
-    console.log("Poi is id :",this.$routeParams.poiid);
+  constructor($http, $scope, $routeParams) {
+    this.$routeParams = $routeParams;
+    console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
 
@@ -29,13 +29,13 @@ export class ExploreComponent {
   }
 
   $onInit() {
-    this.$http.get('http://192.168.1.2:3000/api/poi-images/'+this.$routeParams.poiid)
+    this.$http.get('http://192.168.1.2:3000/api/poi-images/' + this.$routeParams.poiid)
       .then(response => {
         this.poiImage = response.data;
         console.log("Data is : ", this.poiImage);
       });
 
-    this.$http.get('http://192.168.1.2:3000/api/poi-general-infos/'+this.$routeParams.poiid)
+    this.$http.get('http://192.168.1.2:3000/api/poi-general-infos/' + this.$routeParams.poiid)
       .then(response => {
         this.poiInfo = response.data;
         this.description = this.poiInfo.Poi.short_description;
@@ -46,13 +46,13 @@ export class ExploreComponent {
       });
 
 
-
   }
 
   showMore() {
     console.log("test");
     this.description = this.poiInfo.Poi.description;
   }
+
   setLocation(mylatLong, poi) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
@@ -68,7 +68,7 @@ export class ExploreComponent {
     });
 
     google.maps.event.addListener(myLocation, 'click', function () {
-      infowindow.open(map, myLocation);
+      infowindow.open(this.map, myLocation);
       $(".gm-style-iw").parent().addClass("transparentClass");
       $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
     });
@@ -79,6 +79,54 @@ export class ExploreComponent {
     });
     this.map.setZoom(10);
   }
+
+  findplace(placetofind)
+  {
+console.log("Find Place ");
+    var pyrmont = new google.maps.LatLng(this.poiInfo.Poi.latitude, this.poiInfo.Poi.longitude);
+ var request = {
+    location: pyrmont,
+    radius: 1500,
+    types: [placetofind]
+  };
+  var infowindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(this.map);
+  service.nearbySearch(request,(results, status)=>{
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        this.createMarker(results[i]);
+      }
+    }
+  });
+}
+
+
+createMarker(place)
+{
+  var infowindow = new google.maps.InfoWindow();
+  console.log("place is  :",place);
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: this.map,
+    position: place.geometry.location
+  });
+  var contentString = '<div style="background-color: #00A8FF;padding: 5px;color:#ffffff">' + place.name + '</div>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  google.maps.event.addListener(marker, 'click', function () {
+    infowindow.open(this.map, marker);
+    $(".gm-style-iw").parent().addClass("transparentClass");
+    $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function (event) {
+    console.log(this.getPosition().lat());
+    console.log(this.getPosition().lng());
+  });
+  this.map.setZoom(10);
+
+}
 
 
 
