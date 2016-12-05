@@ -15,14 +15,12 @@
     <!--</div>-->
 
     <!-- carousel main -->
-    <flex-slider flex-slide="s in mySlides">
+    <flex-slider flex-slide="s in mySlides track by $index">
       <li>
-        <img ng-src='{{s}}'>
+        <img ng-src='../../assets/images/banner/{{s.image}}'>
       </li>
 
     </flex-slider>
-
-
 
 
   </div>
@@ -61,7 +59,7 @@
   <div class="create-itinerary-btn">
     <a href="/itinerary-plan" class="cart-itineray">
       <i class="ico-shopping-cart2"></i>
-      <span>1</span>
+      <span>{{cart}}</span>
     </a>
     <ul>
       <li><a href="#">Create</a></li>
@@ -90,7 +88,7 @@
 
     <div class="tab_sctn">
       <ul class="nav nav-tabs best_tabs">
-        <li><a href="#stay" data-toggle="tab">Stay</a></li>
+        <!--<li><a href="#stay" data-toggle="tab">Stay</a></li>-->
         <li class="active"><a href="#explore" data-toggle="tab">Explore</a></li>
         <li><a href="#guide" data-toggle="tab">Guide </a></li>
         <li><a href="#cab" data-toggle="tab">Cab</a></li>
@@ -102,51 +100,27 @@
         <div id="explore" class="tab-pane fade in active">
           <div class="row">
             <div class="col-sm-4">
-              <flex-slider flex-slide="s in mySlides">
-                <li>
-                  <a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">
-                  <img src="assets/images/aamer_fort.jpg" alt="Post Title">
-                  <div class="item_detail">
-                  <h5 class="item_heading">Aamer Fort 1</h5>
-                  <p class="package">23KM/ 30 Minutes</p>
-                  <p class="item_desc">There are many variations of passages of Lorem
-                  Ipsum available, but the majority have.</p>
-                  <a href="/explore" class="btn know_more">Know More</a>
-                  <button type="button" class="btn add_itinerary">Add to itinerary
-                  </button>
-                  </div>
-                  </a>
-                </li>
+              <div class="single_item">
+                <div class="porto_galla">
+                  <flex-slider flex-slide="poi in poiByCity track by $index">
+                    <li>
+                      <a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">
+                        <img src="assets/images/aamer_fort.jpg" alt="Post Title">
+                        <div class="item_detail">
+                          <h5 class="item_heading">{{poi.Poi.name}}</h5>
+                          <p class="package">23KM/ 30 Minutes</p>
+                          <p class="item_desc">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have.</p>
+                          <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More</a>
+                          <a ng-click="$ctrl.addButton(poi.Poi)" class="btn add_itinerary">Add to itinerary
+                          </a>
+                        </div>
+                      </a>
+                    </li>
 
-              </flex-slider>
-
-
-              <!--<a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">-->
-              <!--<img src="assets/images/aamer_fort.jpg" alt="Post Title">-->
-              <!--<div class="item_detail">-->
-              <!--<h5 class="item_heading">Aamer Fort 1</h5>-->
-              <!--<p class="package">23KM/ 30 Minutes</p>-->
-              <!--<p class="item_desc">There are many variations of passages of Lorem-->
-              <!--Ipsum available, but the majority have.</p>-->
-              <!--<button type="button" class="btn know_more">Know More</button>-->
-              <!--<button type="button" class="btn add_itinerary">Add to itinerary-->
-              <!--</button>-->
-              <!--</div>-->
-              <!--</a>-->
-
-              <!--<a href="assets/images/aamer_fort.jpg" class="feature_inner_ling">-->
-              <!--<img src="assets/images/aamer_fort.jpg" alt="Post Title">-->
-              <!--<div class="item_detail">-->
-              <!--<h5 class="item_heading">Aamer Fort 2</h5>-->
-              <!--<p class="package">23KM/ 30 Minutes</p>-->
-              <!--<p class="item_desc">There are many variations of passages of Lorem-->
-              <!--Ipsum available, but the majority have.</p>-->
-              <!--<button type="button" class="btn know_more">Know More</button>-->
-              <!--<button type="button" class="btn add_itinerary">Add to itinerary-->
-              <!--</button>-->
-              <!--</div>-->
-              <!--</a>-->
-
+                  </flex-slider>
+                </div>
+              </div>
             </div>
 
             <div class="col-sm-8">
@@ -155,20 +129,20 @@
                   <div class="multiple_item small_item">
                     <div class="porto_galla">
 
-                      <flex-slider flex-slide="s in mySlides">
+                      <flex-slider flex-slide="poi in poiByCity track by $index">
                         <li>
                           <a href="assets/images/hawa_mahal.jpg" class="feature_inner_ling">
                             <img src="assets/images/hawa_mahal.jpg" alt="Post Title">
                             <div class="item_detail">
-                              <h5 class="item_heading">Hawa Mahal1</h5>
+                              <h5 class="item_heading">{{poi.Poi.name}}</h5>
                               <p class="package">5KM/ 10 Minutes</p>
                               <p class="item_desc">There are many variations of passages
                                 of Lorem Ipsum available, but the majority have.</p>
-                              <a href="/explore" class="btn know_more">Know More
+                              <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More
                               </a>
-                              <button type="button" class="btn add_itinerary">Add to
+                              <a ng-click="$ctrl.addButton(poi.Poi)" class="btn add_itinerary">Add to
                                 itinerary
-                              </button>
+                              </a>
                             </div>
                           </a>
                         </li>
@@ -179,20 +153,20 @@
                 <div class="col-sm-7">
                   <div class="multiple_item big_item">
                     <div class="porto_galla">
-                      <flex-slider flex-slide="s in mySlides">
+                      <flex-slider flex-slide="poi in poiByCity track by $index">
                         <li>
                           <a href="assets/images/city_palace.jpg" class="feature_inner_ling">
                             <img src="assets/images/city_palace.jpg" alt="Post Title">
                             <div class="item_detail">
-                              <h5 class="item_heading">City Palace 1</h5>
+                              <h5 class="item_heading">{{poi.Poi.name}}</h5>
                               <p class="package">9KM/ 15 Minutes</p>
                               <p class="item_desc">There are many variations of passages
                                 of Lorem Ipsum available, but the majority have.</p>
-                              <a href="/explore" class="btn know_more">Know More
+                              <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More
                               </a>
-                              <button type="button" class="btn add_itinerary">Add to
+                              <a ng-click="$ctrl.addButton(poi.Poi)" class="btn add_itinerary">Add to
                                 itinerary
-                              </button>
+                              </a>
                             </div>
                           </a>
                         </li>
@@ -207,20 +181,20 @@
                   <div class="multiple_item big_item">
                     <div class="porto_galla">
 
-                      <flex-slider flex-slide="s in mySlides">
+                      <flex-slider flex-slide="poi in poiByCity track by $index">
                         <li>
                           <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
                             <img src="assets/images/jantar_mantar.jpg" alt="Post Title">
                             <div class="item_detail">
-                              <h5 class="item_heading">Jantar Mantar</h5>
+                              <h5 class="item_heading">{{poi.Poi.name}}</h5>
                               <p class="package">11KM/ 20 Minutes</p>
                               <p class="item_desc">There are many variations of passages
                                 of Lorem Ipsum available, but the majority have.</p>
-                              <a href="/explore" class="btn know_more">Know More
+                              <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More
                               </a>
-                              <button type="button" class="btn add_itinerary">Add to
+                              <a ng-click="$ctrl.addButton(poi.Poi)" class="btn add_itinerary">Add to
                                 itinerary
-                              </button>
+                              </a>
                             </div>
                           </a>
                         </li>
@@ -233,20 +207,20 @@
                 <div class="col-sm-5">
                   <div class="multiple_item small_item">
                     <div class="porto_galla">
-                      <flex-slider flex-slide="s in mySlides">
+                      <flex-slider flex-slide="poi in poiByCity track by $index">
                         <li>
                           <a href="assets/images/jantar_mantar.jpg" class="feature_inner_ling">
                             <img src="assets/images/birla_temple.jpg" alt="Post Title">
                             <div class="item_detail">
-                              <h5 class="item_heading">Birla Temple</h5>
+                              <h5 class="item_heading">{{poi.Poi.name}}</h5>
                               <p class="package">15KM/ 25 Minutes</p>
                               <p class="item_desc">There are many variations of passages
                                 of Lorem Ipsum available, but the majority have.</p>
-                              <a href="/explore" class="btn know_more">Know More
+                              <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More
                               </a>
-                              <button type="button" class="btn add_itinerary">Add to
+                              <a ng-click="$ctrl.addButton(poi.Poi)" class="btn add_itinerary">Add to
                                 itinerary
-                              </button>
+                              </a>
                             </div>
                           </a>
                         </li>
@@ -267,6 +241,7 @@
 
 <!-- wellness city events -->
 <section class="best_select">
+  <h4 class="sctn_heading">City Events</h4>
   <div id="map" class="events">
 
   </div>
@@ -303,7 +278,7 @@
                           <h5 class="item_heading">2N/3D Jaipur Tours</h5>
                           <p class="item_desc desc_tour">There are many variations of passages
                             of Lorem Ipsum available, but the majority have.</p>
-                          <a href="/explore" class="btn know_more">Know More</a>
+                          <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More</a>
                           <button type="button" class="btn add_itinerary">Add to itinerary
                           </button>
                         </div>
@@ -329,7 +304,7 @@
                               <p class="item_desc desc_tour">There are many variations of
                                 passages of Lorem Ipsum available, but the majority
                                 have.</p>
-                              <a href="/explore" class="btn know_more">Know More
+                              <a href="/explore/{{poi.Poi.id}}" class="btn know_more">Know More
                               </a>
                               <button type="button" class="btn add_itinerary">Add to
                                 itinerary
@@ -441,7 +416,8 @@
       <div class="row caro-slider">
 
         <div id="jssor_1"
-             style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;" flexcaroslider>
+             style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;"
+             flexcaroslider>
           <!-- Loading Screen -->
           <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div

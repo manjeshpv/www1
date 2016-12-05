@@ -22,8 +22,9 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http) {
+  constructor($http, $filter) {
     this.$http = $http;
+    this.$filter = $filter;
     this.message = 'Hello';
     this.itinerary = [];
     // myMap();
@@ -47,10 +48,10 @@ export class ItineraryPlanComponent {
   }
 
   addButton(poi) {
-    this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon, poi.PoiGeneralInfo.close, poi.PoiGeneralInfo.open);
+    this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon, poi.image);
   }
 
-  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg, window_close, monument_close) {
+  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg,image) {
 
     var from;
     if (localStorage.itinerary) {
@@ -59,13 +60,13 @@ export class ItineraryPlanComponent {
       from = new google.maps.LatLng(itineraryData[totalPoi - 1].latitude, itineraryData[totalPoi - 1].longitude);
     }
     else {
-      this.activateReadyItinerary();
+      this.loiti.activateReadyItinerary();
       from = new google.maps.LatLng(localStorage.startLat, localStorage.startLong);
     }
 
     var to = new google.maps.LatLng(lati, longi);
 
-    var point = this.getTravelTime(from, to, (data) => {
+    var point = this.loiti.getTravelTime(from, to, (data) => {
       var time = data[0];
       var distance = data[1];
 
@@ -88,11 +89,8 @@ export class ItineraryPlanComponent {
       var wait = parseInt(waitTime)
       now.setMinutes(now.getMinutes() + time + maxTime + wait);
 
-      // var reachdate = $filter('date')(now, 'yyyy-MM-dd');
-      // var reachtime = $filter('date')(now, 'hh:mm a');
-
-      this.loiti.calling();
-      var reachtime = this.loiti.displayTime(now);
+      var reachdate = this.$filter('date')(now, 'yyyy-MM-dd');
+      var reachtime = this.$filter('date')(now, 'hh:mm a');
 
       this.loiti.checkPoiExist(itineraryData, id, (flag) => {
 
@@ -101,7 +99,7 @@ export class ItineraryPlanComponent {
         }
         else {
           var model;
-          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", window_close, monument_close, true);
+          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
@@ -118,63 +116,6 @@ export class ItineraryPlanComponent {
   }
 
 
-  activateReadyItinerary() {
-    var model = this.loiti.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "", "", true);
-    var arr = [];
-    arr[0] = model;
-    localStorage.itinerary = JSON.stringify(arr);
-  }
-
-  getTravelTime(from, to, callback) {
-    console.log('trying to get time and distance');
-    var origin = from; // using google.maps.LatLng class
-    var destination = to; // using string
-
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix({
-      origins: [origin],
-      destinations: [destination],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: false,
-      avoidTolls: false
-    }, function (response, status) {
-      if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-        var distance = response.rows[0].elements[0].distance.text;
-        var duration = response.rows[0].elements[0].duration.text;
-        var dvDistance = document.getElementById("dvDistance");
-        // dvDistance.innerHTML = "";
-        // dvDistance.innerHTML += "Distance: " + distance + "<br />";
-        // dvDistance.innerHTML += "Duration:" + duration;
-
-        var item = {};
-        item[0] = duration;
-        item[1] = distance;
-        callback(item);
-
-      } else {
-        // var alertPopup = $ionicPopup.alert({
-        //   title: 'Error',
-        //   template: "Please Set The Start Point First !"
-        // });
-        //
-        // alertPopup.then(function (res) {
-        //   $scope.searchPointFlag = true;
-        // });
-      }
-    });
-
-  }
-
-
-  myMap() {
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {
-      center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
-    };
-    this.map = new google.maps.Map(mapCanvas, mapOptions);
-  }
-
   setLocation(mylatLong, poi) {
     var myLocation = new google.maps.Marker({
       position: mylatLong,
@@ -183,7 +124,7 @@ export class ItineraryPlanComponent {
       zIndex: 1,
 
     });
-     this.markers.push(myLocation);
+    this.markers.push(myLocation);
     var contentString = '<div style="background-color: #00A8FF;padding: 5px;color:#ffffff">' + poi.placename + '</div>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -307,10 +248,11 @@ export class ItineraryPlanComponent {
       }
     }
   }
-  optimizeItineraryZoom() {
-  this.map.setZoom(10);
 
-}
+  optimizeItineraryZoom() {
+    this.map.setZoom(10);
+
+  }
 
 }
 

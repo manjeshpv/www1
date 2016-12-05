@@ -8,28 +8,8 @@ export class Itinerary {
 
   }
 
-  calling(){
+  calling() {
     console.log('Testing calling from other');
-  }
-  displayTime(currentTime) {
-    var str = "";
-    var hours = currentTime.getHours()
-    var minutes = currentTime.getMinutes()
-    var seconds = currentTime.getSeconds()
-
-    if (minutes < 10) {
-      minutes = "0" + minutes
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds
-    }
-    str += hours + ":" + minutes + ":" + seconds + " ";
-    if (hours > 11) {
-      str += "PM"
-    } else {
-      str += "AM"
-    }
-    return str;
   }
 
   checkPoiExist(itinerary, id, callback) {
@@ -44,7 +24,7 @@ export class Itinerary {
     callback(flag);
   }
 
-  getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited, window_close, monument_close, canVisit) {
+  getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited,image) {
     return {
       id: id,
       day: day,
@@ -60,10 +40,55 @@ export class Itinerary {
       waitTime: waitTime,
       categoryImg: categoryImg,
       visited: visited,
-      window_close: window_close,
-      monument_close: monument_close,
-      can_visit: canVisit
+      image: image
     }
+  }
+
+  activateReadyItinerary() {
+    var model = this.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "");
+    var arr = [];
+    arr[0] = model;
+    localStorage.itinerary = JSON.stringify(arr);
+  }
+
+  getTravelTime(from, to, callback) {
+    var origin = from; // using google.maps.LatLng class
+    var destination = to; // using string
+
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+    }, function (response, status) {
+      if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+        var distance = response.rows[0].elements[0].distance.text;
+        var duration = response.rows[0].elements[0].duration.text;
+        var dvDistance = document.getElementById("dvDistance");
+        // dvDistance.innerHTML = "";
+        // dvDistance.innerHTML += "Distance: " + distance + "<br />";
+        // dvDistance.innerHTML += "Duration:" + duration;
+
+        var item = {};
+        item[0] = duration;
+        item[1] = distance;
+        callback(item);
+
+      } else {
+        // var alertPopup = $ionicPopup.alert({
+        //   title: 'Error',
+        //   template: "Please Set The Start Point First !"
+        // });
+        //
+        // alertPopup.then(function (res) {
+        //   $scope.searchPointFlag = true;
+        // });
+      }
+    });
+
   }
 
 }

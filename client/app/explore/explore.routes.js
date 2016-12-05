@@ -3,7 +3,7 @@
 export default function($routeProvider) {
   'ngInject';
   $routeProvider
-    .when('/explore', {
+    .when('/explore/:poiid', {
       template: '<explore></explore>'
     });
 }
