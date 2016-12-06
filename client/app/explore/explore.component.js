@@ -15,13 +15,13 @@ export class ExploreComponent {
   map = new google.maps.Map(this.mapCanvas, this.mapOptions);
 
   /*@ngInject*/
-  constructor($http, $scope, $routeParams,APP_CONFIG) {
+  constructor($http, $scope, $routeParams) {
     this.$routeParams = $routeParams;
     this.$scope=$scope;
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
-    this.url=APP_CONFIG.baseApiUrl;
+    this.url="http://localhost:3000";
   }
 
   $onInit() {

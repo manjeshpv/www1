@@ -11,14 +11,26 @@ export class NavbarComponent {
   $location;
   isCollapsed = true;
 
-  constructor($location) {
+  constructor($location,$scope) {
     'ngInject';
 
     this.$location = $location;
+    this.$scope=$scope;
+
   }
 
   isActive(route) {
     return route === this.$location.path();
+  }
+
+  register(){
+if(this.$scope.showRegister)
+{
+  this.$scope.showRegister=false;
+}
+else {
+  this.$scope.showRegister=true;
+}
   }
 }
 
