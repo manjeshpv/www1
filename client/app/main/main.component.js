@@ -7,45 +7,45 @@ export class MainController {
   $http;
   poiByCity = [];
   newThing = '';
-  url="";
   loiti = new Itinerary();
 
   /*@ngInject*/
-  constructor($http, $scope,$filter,APP_CONFIG) {
-    this.$filter=$filter;
+  constructor($http, $scope, $filter) {
+    this.$filter = $filter;
     this.$http = $http;
     myMap();
     this.$scope = $scope;
-    this.url=APP_CONFIG.baseApiUrl;
+
   }
 
   $onInit() {
 
-    this.$http.get(this.url+'/banners')
+    this.$http.get('http://192.168.1.2:3000/api/banners')
       .then(response => {
         this.$scope.mySlides = response.data;
         console.log("Data is : ", this.$scope.mySlides);
       });
 
-    this.$http.get(this.url+'/home-sections/23')
+    this.$http.get('http://192.168.1.2:3000/api/home-sections/23')
       .then(response => {
         this.$scope.poiByCity = response.data;
         console.log("Data is : ", this.$scope.poiByCity);
       });
 
     if (localStorage.itinerary) {
-      this.$scope.cart=JSON.parse(localStorage.itinerary).length;
+      this.$scope.cart = JSON.parse(localStorage.itinerary).length;
     }
 
   }
+
   addButton(poi) {
 
-    console.log("Poi to add  : ",poi);
-    this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon,poi.image);
+    console.log("Poi to add  : ", poi);
+    this.addToItinerary(poi.id, poi.name, poi.latitude, poi.longitude, poi.vlatitude, poi.vlongitude, poi.explore_time_leasure, poi.explore_time_optimal, poi.wait_time, poi.icon, poi.image);
   }
 
 
-  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg,image) {
+  addToItinerary(id, placename, lati, longi, vlati, vlongi, minExploTime, maxExploTime, waitTime, categoryImg, image) {
 
     var from;
     if (localStorage.itinerary) {
@@ -93,20 +93,19 @@ export class MainController {
         }
         else {
           var model;
-          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0",image);
+          model = this.loiti.getModelItem(id, "day1", placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
-          this.$scope.cart=JSON.parse(localStorage.itinerary).length;
-
+          this.$scope.cart = JSON.parse(localStorage.itinerary).length;
+          this.$scope.$apply();
         }
       });
 
     });
 
   }
-
 
 
   myMap() {

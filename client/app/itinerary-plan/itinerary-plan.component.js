@@ -6,12 +6,11 @@ const ngRoute = require('angular-route');
 import routes from './itinerary-plan.routes';
 import {Itinerary} from './itinerary.logic';
 
-
 export class ItineraryPlanComponent {
   itinerary = [];
   loiti = new Itinerary();
   itineraryMarkers = [];
-url="";
+
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -22,19 +21,16 @@ url="";
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter,$scope,APP_CONFIG) {
-    this.$scope=$scope;
+  constructor($http, $filter, $scope) {
+    this.$scope = $scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
     this.itinerary = [];
-    this.url=APP_CONFIG.baseApiUrl;
-    // myMap();
-
   }
 
   $onInit() {
-    this.$http.get(this.url+'/pois/23')
+    this.$http.get('http://localhost:3000/api/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);
@@ -48,13 +44,12 @@ url="";
     localStorage.startLat = 26.8851417;
     localStorage.startLong = 75.6504706;
 
-    if(!localStorage.day)
-    {
-      localStorage.day=1;
-      this.$scope.day=localStorage.day;
+    if (!localStorage.day) {
+      localStorage.day = 1;
+      this.$scope.day = localStorage.day;
     }
     else {
-      this.$scope.day=localStorage.day;
+      this.$scope.day = localStorage.day;
     }
 
   }
@@ -111,13 +106,14 @@ url="";
         }
         else {
           var model;
-          var day=localStorage.day;
-          model = this.loiti.getModelItem(id, "day"+day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
+          var day = localStorage.day;
+          model = this.loiti.getModelItem(id, "day" + day, placename, lati, longi, vlati, vlongi, reachtime, distance, minExploTime, maxExploTime, waitTime, categoryImg, "0", image);
           var itineraryData = JSON.parse(localStorage.itinerary);
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
           this.itinerary = itineraryData;
+          this.$scope.$apply();
           this.setItineraryMarkers(itineraryData);
           this.drawLine();
           this.optimizeItineraryZoom();
@@ -162,6 +158,13 @@ url="";
       var mylatLong = new google.maps.LatLng(item.latitude, item.longitude);
       this.setLocation(mylatLong, item);
     })
+  }
+
+  // Removes the markers from the map, but keeps them in the array.
+  clearItineraryMarkers(map) {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
   }
 
 
@@ -269,30 +272,49 @@ url="";
 
   previousDay() {
     console.log('previousDay()');
-    var day=parseInt(localStorage.day)
-    if(day==1)
-    {
+    var day = parseInt(localStorage.day)
+    if (day == 1) {
 
     }
     else {
-      day=day-1;
-      this.$scope.day=localStorage.day=day;
+      day = day - 1;
+      this.$scope.day = localStorage.day = day;
 
       var fullItinerary = JSON.parse(localStorage.itinerary);
-      this.itinerary = this.$filter('filter')(fullItinerary, {day:'day'+day});
+      this.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
       this.itinerary.unshift(fullItinerary[0]);
     }
   }
 
   nextDay() {
     console.log('NextDay()');
-    var day=parseInt(localStorage.day)
-    day=day+1;
-    this.$scope.day=localStorage.day=day;
+    var day = parseInt(localStorage.day)
+    day = day + 1;
+    this.$scope.day = localStorage.day = day;
 
     var fullItinerary = JSON.parse(localStorage.itinerary);
-    this.itinerary = this.$filter('filter')(fullItinerary, {day:'day'+day});
+    this.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
     this.itinerary.unshift(fullItinerary[0]);
+  }
+
+  deletePoi(poi, index) {
+    if (index == 0) {
+      alert("Can't Delete Start Point !");
+    }
+    else {
+
+
+      console.log("Delete : ", index);
+      var fullItinerary = JSON.parse(localStorage.itinerary);
+      fullItinerary.splice(index, 1);
+      console.log(fullItinerary);
+      this.itinerary = fullItinerary;
+      localStorage.itinerary = JSON.stringify(fullItinerary);
+      this.clearItineraryMarkers(null);
+      this.clearAllLine();
+      this.setItineraryMarkers(fullItinerary)
+      this.drawLine();
+    }
   }
 }
 
@@ -318,3 +340,4 @@ angular
     }
   )
   .name;
+
