@@ -28,7 +28,18 @@ export class NavbarComponent {
       this.$scope.showRegister = false;
     }
     else {
+      this.$scope.showLogin = false;
       this.$scope.showRegister = true;
+    }
+  }
+
+  showLogin() {
+    if (this.$scope.showLogin) {
+      this.$scope.showLogin = false;
+    }
+    else {
+      this.$scope.showRegister = false;
+      this.$scope.showLogin = true;
     }
   }
 
@@ -56,6 +67,10 @@ export class NavbarComponent {
       console.log("error ", status);
     });
 
+  }
+
+  login(login) {
+    console.log("Login details is : ", login);
   }
 
 }

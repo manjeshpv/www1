@@ -29,7 +29,10 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
   position: fixed;
   top: 100px;
   left: 20%;
-  background-color: #00A8FF;
+  background-color: rgb(17, 147, 217);
+  -webkit-box-shadow: 2px 2px 30px -1px rgba(131,184,230,0.91);
+  -moz-box-shadow: 2px 2px 30px -1px rgba(131,184,230,0.91);
+  box-shadow: 2px 2px 30px -1px rgba(131,184,230,0.91);
 }
 
 ins {

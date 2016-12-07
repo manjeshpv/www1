@@ -40,7 +40,7 @@
       </div>
       <li class="myAccount"><a href="#">My Account</a></li>
       <li class="nav_saperator">|</li>
-      <li class="login"><a href="#">Login</a></li>
+      <li class="login"><a href="#" ng-click="$ctrl.showLogin()">Login</a></li>
       <li class="nav_saperator">|</li>
       <li class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
     </ul>
@@ -81,19 +81,23 @@
                                                     class="form-control"></div>
     <div style="margin-top: 10px" class="row"><input required ng-model="login.password" placeholder="Password" type="password"
                                                      class="form-control"></div>
-    <div style="margin-top: 10px" class="row"><input required ng-model="user.mobile" placeholder="Mobile" type="text"
-                                                     class="form-control"></div>
-    <div style="margin-top: 10px" class="row"><input required ng-model="user.password" placeholder="Password"
-                                                     type="password" class="form-control"></div>
-    <div style="margin-top: 10px;margin-bottom:10px" class="row"><a ng-disabled="loginForm.$invalid"
-                                                                    ng-click="$ctrl.register(user)"
-                                                                    class="btn btn-primary">Register</a></div>
+    <div style="margin-top: 10px" class="row">
+      <div class="col-md-8"><input type="checkbox"><span style="font-size: 11px">Keep Me Loged In</span></div>
+      <div class="col-md-4"><a ng-disabled="loginForm.$invalid"
+                               ng-click="$ctrl.login(login)"
+                               class="btn btn-primary">Log in</a></div>
+    </div>
+    <div style="margin-top: 10px" class="row">
+      <div class="col-md-4 text-left"><span style="font-size: 12px"><a ng-click="$ctrl.showRegister()" href="#">Sign Up</a></span></div>
+      <div class="col-md-8 text-right"><a href="#">Forget Password?</a></div>
+    </div>
+
   </div>
 
   <div class="col-md-5 col-md-offset-1">
     <div style="margin-top: 10px" class="row"><a class=" btn btn-primary btn-lg col-md-12">Facebook</a></div>
     <div style="margin-top: 10px" class="row"><a class="btn btn-danger btn-lg col-md-12">Google</a></div>
-    <div style="margin-top: 10px" class="row"><a class="btn btn-info btn-lg col-md-12">Twitter</a></div>
+    <div style="margin-top: 10px;margin-bottom:10px" class="row"><a class="btn btn-info btn-lg col-md-12">Twitter</a></div>
   </div>
 
 </div>
