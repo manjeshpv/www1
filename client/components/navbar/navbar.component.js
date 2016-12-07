@@ -11,27 +11,53 @@ export class NavbarComponent {
   $location;
   isCollapsed = true;
 
-  constructor($location,$scope) {
+  constructor($location, $scope, $http) {
     'ngInject';
-
+    this.$http = $http;
     this.$location = $location;
-    this.$scope=$scope;
-
+    this.$scope = $scope;
+    this.$scope.user = [];
   }
 
   isActive(route) {
     return route === this.$location.path();
   }
 
-  register(){
-if(this.$scope.showRegister)
-{
-  this.$scope.showRegister=false;
-}
-else {
-  this.$scope.showRegister=true;
-}
+  showRegister() {
+    if (this.$scope.showRegister) {
+      this.$scope.showRegister = false;
+    }
+    else {
+      this.$scope.showRegister = true;
+    }
   }
+
+  register(user) {
+    console.log("User Details is : ", user)
+
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:3000/api/triptoli-users',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function (obj) {
+        var str = [];
+        for (var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+      },
+      data: {name: user.name, email: user.email, mobile: user.mobile, password: user.password}
+
+    }).success(function (data, status, headers, config) {
+      // deferred.resolve(data);
+      // this.$scope.showRegister=false;
+      console.log("done ", data);
+    }).error(function (data, status) {
+      // return deferred.reject(data);
+      console.log("error ", status);
+    });
+
+  }
+
 }
 
 export default angular.module('directives.navbar', [])
