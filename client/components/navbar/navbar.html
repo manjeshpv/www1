@@ -38,11 +38,12 @@
           href="mailto:info@triptoli.com">info@triptoli.com</a>
         </div>
       </div>
-      <li class="myAccount"><a href="#">My Account</a></li>
+      <li ng-show="showAccount" class="myAccount"><a href="/my-trip">My Account</a></li>
       <li class="nav_saperator">|</li>
-      <li class="login"><a href="#" ng-click="$ctrl.showLogin()">Login</a></li>
-      <li class="nav_saperator">|</li>
-      <li class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
+      <li ng-show="showLoginbtn" class="login"><a href="#" ng-click="$ctrl.showLogin()">Login</a></li>
+      <li ng-show="showLogout" class="login"><a href="#" ng-click="$ctrl.logout()">Logout</a></li>
+      <li ng-show="showRegisterbtn" class="nav_saperator">|</li>
+      <li ng-show="showRegisterbtn" class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

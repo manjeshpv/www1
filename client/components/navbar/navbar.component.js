@@ -17,6 +17,20 @@ export class NavbarComponent {
     this.$location = $location;
     this.$scope = $scope;
     this.$scope.user = [];
+    if(localStorage.userid)
+    {
+      $scope.showAccount=true;
+      $scope.showLoginbtn=false;
+      $scope.showRegisterbtn=false;
+      $scope.showLogout=true;
+
+    }
+    else {
+      $scope.showAccount=false;
+      $scope.showLoginbtn=true;
+      $scope.showRegisterbtn=true;
+      $scope.showLogout=false;
+    }
   }
 
   isActive(route) {
@@ -62,7 +76,9 @@ export class NavbarComponent {
       // this.$scope.showRegister=false;
       if(status==200)
       {
+        localStorage.userid=data.id;
         location.reload();
+
       }
       else{
         alert("Invalid User Details");
@@ -86,15 +102,17 @@ export class NavbarComponent {
           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
       },
-      data: {email: login.email,password: login.password}
+      data: {username: login.email,password: login.password}
 
     }).success(function (data, status, headers, config) {
       // deferred.resolve(data);
       // this.$scope.showRegister=false;
       console.log("status ", status);
+      console.log("DAta ", data);
       if(status==200)
       {
-        location.reload();
+        localStorage.userid=data;
+        // location.reload();
       }
       else{
         alert("Invalid User Details");
@@ -106,6 +124,10 @@ export class NavbarComponent {
       alert("Invalid User Details");
     });
 
+  }
+  logout(){
+    delete localStorage.userid;
+    location.href="/";
   }
 
 }
