@@ -44,7 +44,6 @@ export class NavbarComponent {
   }
 
   register(user) {
-    console.log("User Details is : ", user)
 
     this.$http({
       method: 'POST',
@@ -61,16 +60,52 @@ export class NavbarComponent {
     }).success(function (data, status, headers, config) {
       // deferred.resolve(data);
       // this.$scope.showRegister=false;
-      console.log("done ", data);
+      if(status==200)
+      {
+        location.reload();
+      }
+      else{
+        alert("Invalid User Details");
+      }
     }).error(function (data, status) {
       // return deferred.reject(data);
+      alert("Problem with register try Again");
       console.log("error ", status);
     });
 
   }
 
   login(login) {
-    console.log("Login details is : ", login);
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:3000/api/triptoli-users/login',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function (obj) {
+        var str = [];
+        for (var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+      },
+      data: {email: login.email,password: login.password}
+
+    }).success(function (data, status, headers, config) {
+      // deferred.resolve(data);
+      // this.$scope.showRegister=false;
+      console.log("status ", status);
+      if(status==200)
+      {
+        location.reload();
+      }
+      else{
+        alert("Invalid User Details");
+      }
+      console.log("done ", data);
+    }).error(function (data, status) {
+      // return deferred.reject(data);
+      console.log("error ", status);
+      alert("Invalid User Details");
+    });
+
   }
 
 }
