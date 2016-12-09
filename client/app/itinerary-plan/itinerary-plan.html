@@ -1,4 +1,15 @@
 <div class="container-fluid">
+
+  <div class="model-bg" ng-show="showTimePicker"></div>
+  <div ng-show="showTimePicker" style="top: 20%;left: 40%;padding: 5%" class="popupBox text-center">
+    <div class="row text-center"><h5 style="color:#ffffff !important;">Select Start Time</h5></div>
+    <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep"
+         show-meridian="ismeridian">
+
+    </div>
+<a href="#" class="btn btn-danger btn-lg" ng-click="$ctrl.closeTimePicker()">Ok</a>
+    <!--<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>-->
+  </div>
   <div class="row">
     <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
       <div class="row">
@@ -10,23 +21,23 @@
 
       </div>
       <div class="row mapfooter">
-            <div id="scroll">
-              <ul>
-                <li ng-repeat="item in $ctrl.itinerary track by $index">
-                  <table style="width: 100%;color:#ffffff">
-                    <tr>
-                      <td style="border-bottom: 1px outset #b5dff7;white-space: initial;line-height: 1;">
-                        {{item.placename}}
-                      </td>
-                    </tr>
-                    <tr style="width: 100%;font-size:12px !important;">
-                      <td>{{item.time}}</td>
-                    </tr>
-                  </table>
-                </li>
+        <div id="scroll">
+          <ul>
+            <li ng-repeat="item in $ctrl.itinerary track by $index">
+              <table style="width: 100%;color:#ffffff">
+                <tr>
+                  <td style="border-bottom: 1px outset #b5dff7;white-space: initial;line-height: 1;">
+                    {{item.placename}}
+                  </td>
+                </tr>
+                <tr style="width: 100%;font-size:12px !important;">
+                  <td>{{item.time}}</td>
+                </tr>
+              </table>
+            </li>
 
-              </ul>
-            </div>
+          </ul>
+        </div>
 
       </div>
     </div>
@@ -71,11 +82,13 @@
             <div ng-repeat="poi in $ctrl.itinerary track by $index" style="padding: 0px" class="row">
               <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 poiitem">{{poi.time}}</div>
               <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8 text-center">
-                <div style="background-image: url('assets/images/poiitembg.png');background-repeat: no-repeat" class="row">
+                <div style="background-image: url('assets/images/poiitembg.png');background-repeat: no-repeat"
+                     class="row">
                   <img class="poiitemimg" src="../../assets/images/aamer_fort.jpg">
                 </div>
                 <div class="itineraryItemName"><a class="linkcolor" href="#">{{poi.placename}}</a></div>
-                <div style="position: absolute;top:5px;right: 5px"><a href="#" ng-click="$ctrl.deletePoi(poi,$index)"> <img style="width: 25px;height: 25px"  src="../../assets/images/delete-icon.png"></a></div>
+                <div style="position: absolute;top:5px;right: 5px"><a href="#" ng-click="$ctrl.deletePoi(poi,$index)">
+                  <img style="width: 25px;height: 25px" src="../../assets/images/delete-icon.png"></a></div>
               </div>
             </div>
 
@@ -92,7 +105,7 @@
 
       <div class="row text-center">
         <div class="col-md-7">
-          <a class="startButton" href="#">START 06:00 PM</a>
+          <a class="startButton" href="#" ng-click="$ctrl.showTime()">START {{mytime | date:'shortTime' }}</a>
         </div>
       </div>
     </div>
@@ -116,9 +129,11 @@
               <div class="row">
                 <img class="poiimg" src="../../assets/images/{{poi.image}}">
                 <div class="poiItemName ">
-                  <div class="col-md-12"> <a class="linkcolor" href="#">{{poi.name}}</a></div>
+                  <div class="col-md-12"><a class="linkcolor" href="#">{{poi.name}}</a></div>
                 </div>
-                <div class="addbutton"><a ng-click="$ctrl.addButton(poi)"><img style="height: 35px" src="../../assets/images/plus.png"></a></div>
+                <div class="addbutton"><a ng-click="$ctrl.addButton(poi)"><img style="height: 35px"
+                                                                               src="../../assets/images/plus.png"></a>
+                </div>
               </div>
             </div>
           </div>
@@ -134,7 +149,8 @@
             <h5 class="">Latest Coupons</h5>
             <div class="row caro-slider">
               <div id="jssor_1"
-                   style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;" flexcaroslider>
+                   style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;"
+                   flexcaroslider>
                 <!-- Loading Screen -->
                 <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
                   <div
@@ -201,7 +217,8 @@
             <div class="row caro-slider">
 
               <div id="jssor_2"
-                   style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;" flexcaroslider>
+                   style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;"
+                   flexcaroslider>
                 <!-- Loading Screen -->
                 <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
                   <div
@@ -270,8 +287,8 @@
           </div>
         </div>
       </section>
-    </div>
 
-  </div>
+
+    </div>
 
 

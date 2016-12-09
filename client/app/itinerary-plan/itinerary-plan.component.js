@@ -27,6 +27,33 @@ export class ItineraryPlanComponent {
     this.$filter = $filter;
     this.message = 'Hello';
     this.itinerary = [];
+
+
+    $scope.mytime = new Date();
+
+    $scope.hstep = 1;
+    $scope.mstep = 1;
+
+    $scope.options = {
+      hstep: [1, 2, 3],
+      mstep: [1, 5, 10, 15, 25, 30]
+    };
+    $scope.ismeridian = true;
+  }
+
+  showTime() {
+    this.$scope.showTimePicker = true;
+  }
+
+  closeTimePicker() {
+    this.$scope.showTimePicker = false;
+    loiti.recalculate(() => {
+      if(localStorage.itinerary)
+      {
+        this.itinerary = JSON.parse(localStorage.itinerary);
+      }
+
+    });
   }
 
   $onInit() {

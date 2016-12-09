@@ -74,15 +74,10 @@ export class NavbarComponent {
     }).success(function (data, status, headers, config) {
       // deferred.resolve(data);
       // this.$scope.showRegister=false;
-      if(status==200)
-      {
-        localStorage.userid=data.id;
-        location.reload();
+      console.log("Register data is : ",data);
+      localStorage.userid=data.id;
+      location.reload();
 
-      }
-      else{
-        alert("Invalid User Details");
-      }
     }).error(function (data, status) {
       // return deferred.reject(data);
       alert("Problem with register try Again");
@@ -112,7 +107,7 @@ export class NavbarComponent {
       if(status==200)
       {
         localStorage.userid=data;
-        // location.reload();
+         location.reload();
       }
       else{
         alert("Invalid User Details");
