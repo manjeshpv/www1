@@ -21,7 +21,7 @@ export class ExploreComponent {
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
-    this.url="http://localhost:3000";
+    this.url="http://localhost:3000/api";
   }
 
   $onInit() {

@@ -26,19 +26,32 @@ export class ItineraryPlanComponent {
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
-    this.itinerary = [];
+    this.$scope.itinerary = [];
 
+    this.initTimePicker();
+  }
 
-    $scope.mytime = new Date();
+  initTimePicker() {
+    var start=new Date();
 
-    $scope.hstep = 1;
-    $scope.mstep = 1;
+    if(localStorage.itinerary)
+    {
+      var itineraryData=JSON.parse(localStorage.itinerary);
+      var startTime=itineraryData[0].time;
+      var time=startTime.split(' ')[0].split(':');
+      console.log("start time : ",time);
+      start.setHours(time[0]);
+      start.setMinutes(time[1]);
+    }
 
-    $scope.options = {
+    this.$scope.mytime =start;
+    this.$scope.hstep = 1;
+    this.$scope.mstep = 1;
+    this.$scope.options = {
       hstep: [1, 2, 3],
       mstep: [1, 5, 10, 15, 25, 30]
     };
-    $scope.ismeridian = true;
+    this.$scope.ismeridian = true;
   }
 
   showTime() {
@@ -47,10 +60,17 @@ export class ItineraryPlanComponent {
 
   closeTimePicker() {
     this.$scope.showTimePicker = false;
-    loiti.recalculate(() => {
-      if(localStorage.itinerary)
-      {
-        this.itinerary = JSON.parse(localStorage.itinerary);
+    var itineraryData = JSON.parse(localStorage.itinerary);
+    itineraryData[0].time = this.$filter('date')(this.$scope.mytime, 'hh:mm a');
+    localStorage.itinerary = JSON.stringify(itineraryData);
+
+    this.recalculate(() => {
+      if (localStorage.itinerary) {
+        this.$scope.itinerary = JSON.parse(localStorage.itinerary);
+        setTimeout(() => {
+          this.$scope.$apply();
+        }, 100);
+
       }
 
     });
@@ -63,8 +83,8 @@ export class ItineraryPlanComponent {
         console.log("All Pois are  : ", this.pois);
       });
     if (localStorage.itinerary && JSON.parse(localStorage.itinerary).length > 0) {
-      this.itinerary = JSON.parse(localStorage.itinerary);
-      this.setItineraryMarkers(this.itinerary);
+      this.$scope.itinerary = JSON.parse(localStorage.itinerary);
+      this.setItineraryMarkers(this.$scope.itinerary);
       this.drawLine();
       this.optimizeItineraryZoom();
     }
@@ -139,7 +159,7 @@ export class ItineraryPlanComponent {
           itineraryData.push(model);
 
           localStorage.itinerary = JSON.stringify(itineraryData);
-          this.itinerary = itineraryData;
+          this.$scope.itinerary = itineraryData;
           this.$scope.$apply();
           this.setItineraryMarkers(itineraryData);
           this.drawLine();
@@ -308,8 +328,8 @@ export class ItineraryPlanComponent {
       this.$scope.day = localStorage.day = day;
 
       var fullItinerary = JSON.parse(localStorage.itinerary);
-      this.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
-      this.itinerary.unshift(fullItinerary[0]);
+      this.$scope.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
+      this.$scope.itinerary.unshift(fullItinerary[0]);
     }
   }
 
@@ -320,8 +340,8 @@ export class ItineraryPlanComponent {
     this.$scope.day = localStorage.day = day;
 
     var fullItinerary = JSON.parse(localStorage.itinerary);
-    this.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
-    this.itinerary.unshift(fullItinerary[0]);
+    this.$scope.itinerary = this.$filter('filter')(fullItinerary, {day: 'day' + day});
+    this.$scope.itinerary.unshift(fullItinerary[0]);
   }
 
   deletePoi(poi, index) {
@@ -335,13 +355,49 @@ export class ItineraryPlanComponent {
       var fullItinerary = JSON.parse(localStorage.itinerary);
       fullItinerary.splice(index, 1);
       console.log(fullItinerary);
-      this.itinerary = fullItinerary;
+      this.$scope.itinerary = fullItinerary;
       localStorage.itinerary = JSON.stringify(fullItinerary);
       this.clearItineraryMarkers(null);
       this.clearAllLine();
       this.setItineraryMarkers(fullItinerary)
       this.drawLine();
     }
+  }
+
+  recalculate(callback) {
+    if (localStorage.itinerary) {
+      var itinerarydata = JSON.parse(localStorage.itinerary);
+      var i = 0;
+      var j = 1;
+      itinerarydata.forEach((ele) => {
+        if (i != 0) {
+          var from = new google.maps.LatLng(itinerarydata[i - 1].latitude, itinerarydata[i - 1].longitude);
+          var to = new google.maps.LatLng(ele.latitude, ele.longitude);
+
+          this.loiti.getTravelTime(from, to, (timedata) => {
+            var time = itinerarydata[j - 1].time.split(' ')[0].split(':');
+            var min = parseInt(timedata[0].split(' ')[0]);
+            var distance = timedata[1];
+            var currentTime = new Date();
+            currentTime.setHours(time[0]);
+            currentTime.setMinutes(time[1]);
+            var maxTime = parseInt(ele.maxExploTime);
+            var waitTime = parseInt(ele.waitTime);
+            currentTime.setMinutes(currentTime.getMinutes() + min + maxTime + waitTime);
+            var newtime = this.$filter('date')(currentTime, 'hh:mm a');
+
+            var model = this.loiti.getModelItem(itinerarydata[j].id, itinerarydata[j].day, itinerarydata[j].placename, itinerarydata[j].latitude, itinerarydata[j].longitude, itinerarydata[j].vlatitude, itinerarydata[j].vlongitude, newtime, distance, itinerarydata[j].minExploTime, itinerarydata[j].maxExploTime, itinerarydata[j].waitTime, itinerarydata[j].categoryImg, itinerarydata[j].visited, itinerarydata[j].image);
+
+            itinerarydata[j] = model;
+            localStorage.itinerary = JSON.stringify(itinerarydata);
+            j++;
+          });
+        }
+
+        i++;
+      });
+    }
+    callback();
   }
 }
 

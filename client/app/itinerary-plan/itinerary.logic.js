@@ -91,41 +91,5 @@ export class Itinerary {
 
   }
 
-recalculate(callback) {
-  if (localStorage.itinerary) {
-    var itinerarydata = JSON.parse(localStorage.itinerary);
-    var i = 0;
-    var j = 1;
-    itinerarydata.forEach((ele)=> {
-      if (i != 0) {
-        var from = new google.maps.LatLng(itinerarydata[i - 1].latitude, itinerarydata[i - 1].longitude);
-        var to = new google.maps.LatLng(ele.latitude, ele.longitude);
-
-        this.getTravelTime(from, to, function (timedata) {
-          var time = itinerarydata[j - 1].time.split(' ')[0].split(':');
-          var min = parseInt(timedata[0].split(' ')[0]);
-          var distance = timedata[1];
-          var currentTime = new Date();
-          currentTime.setHours(time[0]);
-          currentTime.setMinutes(time[1]);
-          var maxTime = parseInt(ele.maxExploTime);
-          var waitTime = parseInt(ele.waitTime);
-          currentTime.setMinutes(currentTime.getMinutes() + min + maxTime + waitTime);
-          var newtime = this.$filter('date')(currentTime, 'hh:mm a');
-
-
-          var model = this.getModelItem(itinerarydata[j].id, itinerarydata[j].day, itinerarydata[j].placename, itinerarydata[j].latitude, itinerarydata[j].longitude, itinerarydata[j].vlatitude, itinerarydata[j].vlongitude, newtime, distance, itinerarydata[j].minExploTime, itinerarydata[j].maxExploTime, itinerarydata[j].waitTime, itinerarydata[j].categoryImg, itinerarydata[j].visited, itinerarydata[j].image);
-
-          itinerarydata[j] = model;
-          localStorage.itinerary = JSON.stringify(itinerarydata);
-          j++;
-        });
-      }
-
-      i++;
-    });
-  }
-  callback();
-}
 
 }
