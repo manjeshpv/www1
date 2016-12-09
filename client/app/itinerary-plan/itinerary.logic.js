@@ -45,7 +45,7 @@ export class Itinerary {
   }
 
   activateReadyItinerary() {
-    var model = this.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "");
+    var model = this.getModelItem(0, "start", "Start", localStorage.startLat, localStorage.startLong, "", "", "6:00 AM", "", "", "", "", "", "0", "start.jpg");
     var arr = [];
     arr[0] = model;
     localStorage.itinerary = JSON.stringify(arr);

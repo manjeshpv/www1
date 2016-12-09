@@ -79,12 +79,12 @@
           <div class="itineraryItems" id="style-6">
 
 
-            <div ng-repeat="poi in itinerary track by $index" style="padding: 0px" class="row">
-              <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 poiitem">{{poi.time}}</div>
+            <div ng-repeat="poi in itinerary | orderBy: 'time':true track by $index " style="padding: 0px" class="row">
+              <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 poiitem">{{poi.time}}:: {{poi.desc}}</div>
               <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8 text-center">
                 <div style="background-image: url('assets/images/poiitembg.png');background-repeat: no-repeat"
                      class="row">
-                  <img class="poiitemimg" src="../../assets/images/amer-small.jpg">
+                  <img class="poiitemimg" src="../../assets/images/{{poi.image}}">
                 </div>
                 <div class="itineraryItemName"><a class="linkcolor" href="#">{{poi.placename}}</a></div>
                 <div style="position: absolute;top:5px;right: 5px"><a href="#" ng-click="$ctrl.deletePoi(poi,$index)">
