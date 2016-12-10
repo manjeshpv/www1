@@ -11,6 +11,7 @@ export class ItineraryPlanComponent {
   loiti = new Itinerary();
   itineraryMarkers = [];
 
+
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -27,24 +28,28 @@ export class ItineraryPlanComponent {
     this.$filter = $filter;
     this.message = 'Hello';
     this.$scope.itinerary = [];
-
+    this.$scope.trip = [];
     this.initTimePicker();
+    this.initDatePicker();
+  }
+
+  initDatePicker() {
+    this.$scope.dt = new Date();
   }
 
   initTimePicker() {
-    var start=new Date();
+    var start = new Date();
 
-    if(localStorage.itinerary)
-    {
-      var itineraryData=JSON.parse(localStorage.itinerary);
-      var startTime=itineraryData[0].time;
-      var time=startTime.split(' ')[0].split(':');
-      console.log("start time : ",time);
+    if (localStorage.itinerary) {
+      var itineraryData = JSON.parse(localStorage.itinerary);
+      var startTime = itineraryData[0].time;
+      var time = startTime.split(' ')[0].split(':');
+      console.log("start time : ", time);
       start.setHours(time[0]);
       start.setMinutes(time[1]);
     }
 
-    this.$scope.mytime =start;
+    this.$scope.mytime = start;
     this.$scope.hstep = 1;
     this.$scope.mstep = 1;
     this.$scope.options = {
@@ -398,6 +403,46 @@ export class ItineraryPlanComponent {
       });
     }
     callback();
+  }
+
+  saveItineraryDialog() {
+    this.$scope.showSaveItnerary = true;
+  }
+
+  cancelSaveDialog() {
+    this.$scope.showSaveItnerary = false;
+  }
+
+  saveItinerary(trip) {
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:3000/api/user-itinerarys',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function (obj) {
+        var str = [];
+        for (var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+      },
+      data: {user_id:'1',itinerary_name:trip.name,itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,latitude:localStorage.startLat,longitude:localStorage.startLong}
+
+    }).success(function (data, status, headers, config) {
+      // deferred.resolve(data);
+      // this.$scope.showRegister=false;
+      console.log("status ", status);
+      console.log("DAta ", data);
+      if (status == 200) {
+        location.reload();
+      }
+      else {
+        alert("Invalid Details");
+      }
+      console.log("done ", data);
+    }).error(function (data, status) {
+      // return deferred.reject(data);
+      console.log("error ", status);
+      alert("Invalid Details");
+    });
   }
 }
 
