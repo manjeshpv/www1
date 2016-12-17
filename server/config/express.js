@@ -18,6 +18,9 @@ import config from './environment';
 import session from 'express-session';
 import sqldb from '../sqldb';
 import expressSequelizeSession from 'express-sequelize-session';
+import cors from 'cors';
+
+
 var Store = expressSequelizeSession(session.Store);
 
 export default function(app) {
@@ -38,7 +41,7 @@ export default function(app) {
   app.set('views', `${config.root}/server/views`);
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
-
+  app.use(cors());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(methodOverride());

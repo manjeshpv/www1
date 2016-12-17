@@ -11,26 +11,47 @@ export class NavbarComponent {
   $location;
   isCollapsed = true;
 
-  constructor($location, $scope, $http) {
+  constructor($location, $scope, $http, OAuth, OAuthToken, Auth, Session) {
     'ngInject';
     this.$http = $http;
     this.$location = $location;
     this.$scope = $scope;
-    this.$scope.user = [];
-    if(localStorage.userid)
-    {
-      $scope.showAccount=true;
-      $scope.showLoginbtn=false;
-      $scope.showRegisterbtn=false;
-      $scope.showLogout=true;
+    this.OAuth = OAuth;
+    this.OAuthToken = OAuthToken;
+    this.Auth = Auth;
+    this.Session = Session;
 
+    this.$scope.user = [];
+
+    if(localStorage.userid) {
+      $scope.showAccount = true;
+      $scope.showLoginbtn = false;
+      $scope.showRegisterbtn = false;
+      $scope.showLogout = true;
+    } else {
+      $scope.showAccount = false;
+      $scope.showLoginbtn = true;
+      $scope.showRegisterbtn = true;
+      $scope.showLogout = false;
     }
-    else {
-      $scope.showAccount=false;
-      $scope.showLoginbtn=true;
-      $scope.showRegisterbtn=true;
-      $scope.showLogout=false;
-    }
+  }
+
+  loginx(user) {
+    var options = {};
+    this.OAuth.getAccessToken(user, options).then(response => {
+      this.OAuthToken.setToken(response.data);
+      console.log(this.OAuthToken.getToken(), response);
+      this.Auth.setSessionData().then(() => {
+        location.href = '/';
+        setTimeout(function() {
+          location.reload();
+        }, 100);
+      });
+    })
+      .catch(err => {
+        console.log('err', err);
+        this.errorMessage = 'Server Errro';
+      });
   }
 
   isActive(route) {

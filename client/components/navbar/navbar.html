@@ -40,7 +40,8 @@
       </div>
       <li ng-show="showAccount" class="myAccount"><a href="/my-trip">My Account</a></li>
       <li class="nav_saperator">|</li>
-      <li ng-show="showLoginbtn" class="login"><a href="#" ng-click="$ctrl.showLogin()">Login</a></li>
+      <li ng-show='$ctrl.OAuth.isAuthenticated()'>{{ $ctrl.Session.read('user').email}}</li>
+      <li ng-show="showLoginbtn" class="login"><a href="#" ng-click="$ctrl.showLogin()"  ng-hide='$ctrl.OAuth.isAuthenticated()'>Login</a></li>
       <li ng-show="showLogout" class="login"><a href="#" ng-click="$ctrl.logout()">Logout</a></li>
       <li ng-show="showRegisterbtn" class="nav_saperator">|</li>
       <li ng-show="showRegisterbtn" class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
@@ -77,23 +78,25 @@
 
 <div ng-show="showLogin" class="col-md-5 col-lg-5 col-xs-10 col-sm-6 col-md-offset-2 col-lg-offset-2 popupBox">
   <div style="margin-top: 10px" class="row text-center sctn_heading"><h4>Log In</h4></div>
-  <div ng-form="loginForm" class="col-md-5">
-    <div style="margin-top: 5px" class="row"><input required ng-model="login.email" placeholder="Email" type="text"
+  <form name="loginForm" ng-submit='$ctrl.loginx(login)' class="col-md-5">
+    <div style="margin-top: 5px" class="row">
+      <input required ng-model="login.username" placeholder="Email" type="text"
                                                     class="form-control"></div>
-    <div style="margin-top: 10px" class="row"><input required ng-model="login.password" placeholder="Password" type="password"
+    <div style="margin-top: 10px" class="row">
+      <input required ng-model="login.password" placeholder="Password" type="password"
                                                      class="form-control"></div>
     <div style="margin-top: 10px" class="row">
       <div class="col-md-8"><input type="checkbox"><span style="font-size: 11px">Keep Me Loged In</span></div>
-      <div class="col-md-4"><a ng-disabled="loginForm.$invalid"
-                               ng-click="$ctrl.login(login)"
-                               class="btn btn-primary">Log in</a></div>
+      <div class="col-md-4">
+        <button type='submit' ng-disabled="loginForm.$invalid"
+                               class="btn btn-primary">Log in</button></div>
     </div>
     <div style="margin-top: 10px" class="row">
       <div class="col-md-4 text-left"><span style="font-size: 12px"><a ng-click="$ctrl.showRegister()" href="#">Sign Up</a></span></div>
       <div class="col-md-8 text-right"><a href="#">Forget Password?</a></div>
     </div>
 
-  </div>
+  </form>
 
   <div class="col-md-5 col-md-offset-1">
     <div style="margin-top: 10px" class="row"><a class=" btn btn-primary btn-lg col-md-12">Facebook</a></div>
