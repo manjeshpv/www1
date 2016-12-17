@@ -29,11 +29,11 @@ import profileComponent from './profile/profile.component';
 import contact from './contact/contact.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
-import angularOauth2 from 'angular-oauth2';
+// import angularOauth2 from 'angular-oauth2';
 
 import './app.css';
 
-angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap,angularOauth2, navbar,
+angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize, ngRoute, uiBootstrap, navbar,
   footer, main, explore, itineraryPlan, bookGuide, accountSetting, myTrip, bookingStay, profileComponent, contact, constants, util
 ])
   .constant("APP_CONFIG", {

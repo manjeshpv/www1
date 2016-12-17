@@ -61,7 +61,7 @@ export class NavbarComponent {
 
     this.$http({
       method: 'POST',
-      url: 'http://localhost:3000/api/triptoli-users',
+      url: 'http://localhost:3000/api/users',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];
@@ -76,7 +76,7 @@ export class NavbarComponent {
       // this.$scope.showRegister=false;
       console.log("Register data is : ",data);
       localStorage.userid=data.id;
-      location.reload();
+      // location.reload();
 
     }).error(function (data, status) {
       // return deferred.reject(data);
@@ -89,7 +89,7 @@ export class NavbarComponent {
   login(login) {
     this.$http({
       method: 'POST',
-      url: 'http://localhost:3000/api/triptoli-users/login',
+      url: 'http://localhost:3000/api/users/login',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];
