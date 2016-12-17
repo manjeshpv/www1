@@ -485,6 +485,8 @@ gulp.task('build', cb => {
 gulp.task('clean:dist', () => del([`${paths.dist}/!(.git*|.openshift|Procfile)**`], {dot: true}));
 
 gulp.task('build:images', () => {
+  console.error('paths.client.images',paths.client.images);
+  console.error('x', `${paths.dist}/${clientPath}/assets/images`)
     return gulp.src(paths.client.images)
         .pipe(plugins.imagemin([
             plugins.imagemin.optipng({optimizationLevel: 5}),

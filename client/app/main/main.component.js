@@ -34,13 +34,13 @@ export class MainController {
 
   $onInit() {
 
-    this.$http.get('http://192.168.1.2:3000/api/banners')
+    this.$http.get('http://localhost:3000/api/banners')
       .then(response => {
         this.$scope.mySlides = response.data;
         console.log("Data is : ", this.$scope.mySlides);
       });
 
-    this.$http.get('http://192.168.1.2:3000/api/home-sections/23')
+    this.$http.get('http://localhost:3000/api/home-sections/23')
       .then(response => {
         this.$scope.poiByCity = response.data;
         console.log("Data is : ", this.$scope.poiByCity);
