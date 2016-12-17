@@ -82,7 +82,7 @@ export class ItineraryPlanComponent {
   }
 
   $onInit() {
-    this.$http.get('http://localhost:3000/api/pois/23')
+    this.$http.get('http://s-api.triptoli.com/api/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);
