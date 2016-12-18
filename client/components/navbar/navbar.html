@@ -38,13 +38,13 @@
           href="mailto:info@triptoli.com">info@triptoli.com</a>
         </div>
       </div>
-      <li ng-show="showAccount" class="myAccount"><a href="/my-trip">My Account</a></li>
+      <li ng-show='$ctrl.OAuth.isAuthenticated()' class="myAccount"><a href="/my-trip">My Account</a></li>
       <li class="nav_saperator">|</li>
       <li ng-show='$ctrl.OAuth.isAuthenticated()'>{{ $ctrl.Session.read('user').email}}</li>
       <li ng-show="showLoginbtn" class="login"><a href="#" ng-click="$ctrl.showLogin()"  ng-hide='$ctrl.OAuth.isAuthenticated()'>Login</a></li>
-      <li ng-show="showLogout" class="login"><a href="#" ng-click="$ctrl.logout()">Logout</a></li>
+      <li ng-show="$ctrl.OAuth.isAuthenticated()" class="login"><a href="#" ng-click="$ctrl.logout()">Logout</a></li>
       <li ng-show="showRegisterbtn" class="nav_saperator">|</li>
-      <li ng-show="showRegisterbtn" class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
+      <li ng-hide='$ctrl.OAuth.isAuthenticated()' class="register"><a href="#" ng-click="$ctrl.showRegister()">Register</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

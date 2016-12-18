@@ -22,13 +22,14 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter, $scope) {
+  constructor($http, $filter, $scope,Session) {
     this.$scope = $scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
     this.$scope.itinerary = [];
     this.$scope.trip = [];
+    this.Session=Session;
     this.initTimePicker();
     this.initDatePicker();
   }
@@ -38,6 +39,7 @@ export class ItineraryPlanComponent {
   }
 
   initTimePicker() {
+
     var start = new Date();
 
     if (localStorage.itinerary) {
@@ -424,21 +426,13 @@ export class ItineraryPlanComponent {
           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
       },
-      data: {user_id:'1',itinerary_name:trip.name,itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,latitude:localStorage.startLat,longitude:localStorage.startLong}
+      data: {user_id:this.Session.read('user').id,itinerary_name:trip.name,itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,latitude:localStorage.startLat,longitude:localStorage.startLong}
 
-    }).success(function (data, status, headers, config) {
-      // deferred.resolve(data);
-      // this.$scope.showRegister=false;
-      console.log("status ", status);
-      console.log("DAta ", data);
-      if (status == 200) {
-        location.reload();
-      }
-      else {
-        alert("Invalid Details");
-      }
-      console.log("done ", data);
-    }).error(function (data, status) {
+    }).success((data, status, headers, config)=> {
+
+      this.$scope.showSaveItnerary = false;
+
+    }).error((data, status)=> {
       // return deferred.reject(data);
       console.log("error ", status);
       alert("Invalid Details");
