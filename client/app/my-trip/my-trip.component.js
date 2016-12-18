@@ -7,13 +7,15 @@ import routes from './my-trip.routes';
 
 export class MyTripComponent {
   /*@ngInject*/
-  constructor($http,$scope) {
+  constructor($http,$scope,URLS,Session) {
     this.message = 'Hello';
     this.$http=$http;
     this.$scope=$scope;
+    this.URLS=URLS;
+    this.Session = Session;
   }
   $onInit() {
-    this.$http.get('http://localhost:3000/api/user-itinerarys')
+    this.$http.get(this.URLS.API+'/user-itinerarys')
       .then(response => {
         this.$scope.trips = response.data;
         console.log("All Trips are  : ", this.$scope.trips);

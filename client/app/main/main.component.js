@@ -10,9 +10,10 @@ export class MainController {
   loiti = new Itinerary();
 
   /*@ngInject*/
-  constructor($http, $scope, $filter) {
+  constructor($http, $scope, $filter,URLS) {
     this.$filter = $filter;
     this.$http = $http;
+    this.URLS=URLS;
     myMap();
     this.$scope = $scope;
     $scope.slides = [
@@ -34,13 +35,13 @@ export class MainController {
 
   $onInit() {
 
-    this.$http.get('http://localhost:3000/api/banners')
+    this.$http.get(this.URLS.API+'/banners')
       .then(response => {
         this.$scope.mySlides = response.data;
         console.log("Data is : ", this.$scope.mySlides);
       });
 
-    this.$http.get('http://localhost:3000/api/home-sections/23')
+    this.$http.get(this.URLS.API+'/home-sections/23')
       .then(response => {
         this.$scope.poiByCity = response.data;
         console.log("Data is : ", this.$scope.poiByCity);

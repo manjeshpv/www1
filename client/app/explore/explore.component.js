@@ -15,23 +15,24 @@ export class ExploreComponent {
   map = new google.maps.Map(this.mapCanvas, this.mapOptions);
 
   /*@ngInject*/
-  constructor($http, $scope, $routeParams) {
+  constructor($http, $scope, $routeParams,URLS) {
     this.$routeParams = $routeParams;
     this.$scope=$scope;
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
-    this.url="http://localhost:3000/api";
+    this.URLS=URLS;
+
   }
 
   $onInit() {
-    this.$http.get(this.url+'/poi-images/' + this.$routeParams.poiid)
+    this.$http.get(this.URLS.API+'/poi-images/' + this.$routeParams.poiid)
       .then(response => {
         this.$scope.poiImages = response.data;
         console.log("Poi Images : ", this.$scope.poiImages);
       });
 
-    this.$http.get(this.url+'/poi-general-infos/' + this.$routeParams.poiid)
+    this.$http.get(this.URLS.API+'/poi-general-infos/' + this.$routeParams.poiid)
       .then(response => {
         this.poiInfo = response.data;
         this.description = this.poiInfo.Poi.short_description;

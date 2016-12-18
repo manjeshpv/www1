@@ -11,7 +11,7 @@ export class NavbarComponent {
   $location;
   isCollapsed = true;
 
-  constructor($location, $scope, $http, OAuth, OAuthToken, Auth, Session) {
+  constructor($location, $scope, $http, OAuth, OAuthToken, Auth, Session,URLS) {
     'ngInject';
     this.$http = $http;
     this.$location = $location;
@@ -20,7 +20,7 @@ export class NavbarComponent {
     this.OAuthToken = OAuthToken;
     this.Auth = Auth;
     this.Session = Session;
-
+    this.URLS=URLS;
     this.$scope.user = [];
 
     if(localStorage.userid) {
@@ -82,7 +82,7 @@ export class NavbarComponent {
 
     this.$http({
       method: 'POST',
-      url: 'http://localhost:3000/api/users',
+      url: this.URLS.API+'/users',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];
@@ -92,14 +92,14 @@ export class NavbarComponent {
       },
       data: {name: user.name, email: user.email, mobile: user.mobile, password: user.password}
 
-    }).success(function (data, status, headers, config) {
+    }).then((data, status, headers, config)=> {
       // deferred.resolve(data);
-      // this.$scope.showRegister=false;
+      this.$scope.showRegister=false;
       console.log("Register data is : ",data);
       localStorage.userid=data.id;
       // location.reload();
 
-    }).error(function (data, status) {
+    }).catch((data, status)=> {
       // return deferred.reject(data);
       alert("Problem with register try Again");
       console.log("error ", status);
@@ -110,7 +110,7 @@ export class NavbarComponent {
   login(login) {
     this.$http({
       method: 'POST',
-      url: 'http://localhost:3000/api/users/login',
+      url: this.URLS.API+'/users/login',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];

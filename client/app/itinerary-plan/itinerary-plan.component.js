@@ -22,13 +22,14 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter, $scope,Session) {
+  constructor($http, $filter, $scope,Session,URLS) {
     this.$scope = $scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
     this.$scope.itinerary = [];
     this.$scope.trip = [];
+    this.URLS=URLS;
     this.Session=Session;
     this.initTimePicker();
     this.initDatePicker();
@@ -84,7 +85,7 @@ export class ItineraryPlanComponent {
   }
 
   $onInit() {
-    this.$http.get('http://s-api.triptoli.com/api/pois/23')
+    this.$http.get(this.URLS.API+'/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);
@@ -416,7 +417,7 @@ export class ItineraryPlanComponent {
   }
 
   saveItinerary(trip) {
-    this.$http.post('http://localhost:3000/api/user-itinerarys',
+    this.$http.post(this.URLS.API+'/user-itinerarys',
       {user_id:this.Session.read('user').id,itinerary_name:trip.name,
         itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,
         latitude:localStorage.startLat,longitude:localStorage.startLong,
