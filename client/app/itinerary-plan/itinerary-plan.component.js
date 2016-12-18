@@ -416,23 +416,16 @@ export class ItineraryPlanComponent {
   }
 
   saveItinerary(trip) {
-    this.$http({
-      method: 'POST',
-      url: 'http://localhost:3000/api/user-itinerarys',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      transformRequest: function (obj) {
-        var str = [];
-        for (var p in obj)
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-      },
-      data: {user_id:this.Session.read('user').id,itinerary_name:trip.name,itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,latitude:localStorage.startLat,longitude:localStorage.startLong}
-
-    }).success((data, status, headers, config)=> {
-
+    this.$http.post('http://localhost:3000/api/user-itinerarys',
+      {user_id:this.Session.read('user').id,itinerary_name:trip.name,
+        itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,
+        latitude:localStorage.startLat,longitude:localStorage.startLong,
+        UserItineraryPois:JSON.parse(localStorage.itinerary)
+      }).then((response)=> {
+        const data = response.data;
       this.$scope.showSaveItnerary = false;
 
-    }).error((data, status)=> {
+    }).catch((err)=> {
       // return deferred.reject(data);
       console.log("error ", status);
       alert("Invalid Details");
