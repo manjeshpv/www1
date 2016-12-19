@@ -32,7 +32,7 @@ export class ExploreComponent {
         console.log("Poi Images : ", this.$scope.poiImages);
       });
 
-    this.$http.get(this.URLS.API+'/poi-general-infos/' + this.$routeParams.poiid)
+    this.$http.get(this.URLS.API + '/poi-general-infos/' + this.$routeParams.poiid)
       .then(response => {
         this.poiInfo = response.data;
         this.description = this.poiInfo.Poi.short_description;

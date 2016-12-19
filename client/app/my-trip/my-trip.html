@@ -4,7 +4,7 @@
       <div class="row" style="text-align: center;margin-top: 4%">
 
         <img src="../../assets/images/2.jpg" class="img-circle myimg" width="160" height="160">
-        <h3>{{$ctrl.Session.read('user').email}}</h3>
+        <h3>{{name}}</h3>
       </div>
       <div class="list">
         <a href="#" class="list-group-item border ">Profile</a>
@@ -31,8 +31,10 @@
               </div>
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <a href="#" ng-click="$ctrl.deleteItinerary()">
               <img src="../../assets/images/free-27-128.png" class="img-responsive pull-right"
                    style="height: 20px;width: 20px">
+              </a>
             </div>
           </div>
         </div>

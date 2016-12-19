@@ -22,15 +22,15 @@ export class ItineraryPlanComponent {
   markers = [];
 
   /*@ngInject*/
-  constructor($http, $filter, $scope,Session,URLS) {
+  constructor($http, $filter, $scope, Session, URLS) {
     this.$scope = $scope;
     this.$http = $http;
     this.$filter = $filter;
     this.message = 'Hello';
     this.$scope.itinerary = [];
     this.$scope.trip = [];
-    this.URLS=URLS;
-    this.Session=Session;
+    this.URLS = URLS;
+    this.Session = Session;
     this.initTimePicker();
     this.initDatePicker();
   }
@@ -85,7 +85,7 @@ export class ItineraryPlanComponent {
   }
 
   $onInit() {
-    this.$http.get(this.URLS.API+'/pois/23')
+    this.$http.get(this.URLS.API + '/pois/23')
       .then(response => {
         this.pois = response.data;
         console.log("All Pois are  : ", this.pois);
@@ -394,7 +394,7 @@ export class ItineraryPlanComponent {
             currentTime.setMinutes(currentTime.getMinutes() + min + maxTime + waitTime);
             var newtime = this.$filter('date')(currentTime, 'hh:mm a');
 
-            var model = this.loiti.getModelItem(itinerarydata[j].id, itinerarydata[j].day, itinerarydata[j].placename, itinerarydata[j].latitude, itinerarydata[j].longitude, itinerarydata[j].vlatitude, itinerarydata[j].vlongitude, newtime, distance, itinerarydata[j].minExploTime, itinerarydata[j].maxExploTime, itinerarydata[j].waitTime, itinerarydata[j].categoryImg, itinerarydata[j].visited, itinerarydata[j].image);
+            var model = this.loiti.getModelItem(itinerarydata[j].poi_id, itinerarydata[j].day, itinerarydata[j].placename, itinerarydata[j].latitude, itinerarydata[j].longitude, itinerarydata[j].vlatitude, itinerarydata[j].vlongitude, newtime, distance, itinerarydata[j].minExploTime, itinerarydata[j].maxExploTime, itinerarydata[j].waitTime, itinerarydata[j].categoryImg, itinerarydata[j].visited, itinerarydata[j].image);
 
             itinerarydata[j] = model;
             localStorage.itinerary = JSON.stringify(itinerarydata);
@@ -417,19 +417,23 @@ export class ItineraryPlanComponent {
   }
 
   saveItinerary(trip) {
-    this.$http.post(this.URLS.API+'/user-itinerarys',
-      {user_id:this.Session.read('user').id,itinerary_name:trip.name,
-        itinerary_date:this.$scope.dt,start_time:this.$scope.itinerary[0].time,
-        latitude:localStorage.startLat,longitude:localStorage.startLong,
-        UserItineraryPois:JSON.parse(localStorage.itinerary)
-      }).then((response)=> {
-        const data = response.data;
-      this.$scope.showSaveItnerary = false;
+    var tripData = JSON.parse(localStorage.itinerary)
+    var trippois = tripData.shift();
 
-    }).catch((err)=> {
+    this.$http.post(this.URLS.API + '/user-itinerarys',
+      {
+        user_id: this.Session.read('user').id, itinerary_name: trip.name,
+        itinerary_date: this.$scope.dt, start_time: this.$scope.itinerary[0].time,
+        latitude: localStorage.startLat, longitude: localStorage.startLong,
+        UserItineraryPois: tripData
+      }).then((response) => {
+      const data = response.data;
+        this.$scope.showSaveItnerary = false;
+
+    }).catch((err) => {
       // return deferred.reject(data);
-      console.log("error ", status);
-      alert("Invalid Details");
+      console.log('error ', status);
+      alert('Invalid Details');
     });
   }
 }

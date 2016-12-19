@@ -73,7 +73,7 @@ angular.module('triptoliUiApp', [ngCookies, ngResource, ngSanitize,
       //  //$window.location.href = URLS.OAUTH;
       //  //$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
       //}
-      if(!OAuth.isAuthenticated() && ['login','main ','itinerary-plan'].indexOf(next.name) === -1) {
+      if(!OAuth.isAuthenticated() && ['login', 'main ', 'itinerary-plan'].indexOf(next.name) === -1) {
         event.preventDefault();
         location.href = '/#/login';
         //$state.go('dashboard');

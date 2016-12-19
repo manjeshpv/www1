@@ -11,7 +11,7 @@ export class NavbarComponent {
   $location;
   isCollapsed = true;
 
-  constructor($location, $scope, $http, OAuth, OAuthToken, Auth, Session,URLS) {
+  constructor($location, $scope, $http, OAuth, OAuthToken, Auth, Session, URLS) {
     'ngInject';
     this.$http = $http;
     this.$location = $location;
@@ -20,8 +20,9 @@ export class NavbarComponent {
     this.OAuthToken = OAuthToken;
     this.Auth = Auth;
     this.Session = Session;
-    this.URLS=URLS;
+    this.URLS = URLS;
     this.$scope.user = [];
+
 
     if(localStorage.userid) {
       $scope.showAccount = true;
@@ -43,7 +44,7 @@ export class NavbarComponent {
       console.log(this.OAuthToken.getToken(), response);
       this.Auth.setSessionData().then(() => {
         location.href = '/';
-        setTimeout(function() {
+        setTimeout(function () {
           location.reload();
         }, 100);
       });
@@ -54,12 +55,18 @@ export class NavbarComponent {
       });
   }
 
+  logout() {
+    this.OAuthToken.removeToken()
+    this.Session.destroy();
+    location.href = '/';
+  }
+
   isActive(route) {
     return route === this.$location.path();
   }
 
   showRegister() {
-    if (this.$scope.showRegister) {
+    if(this.$scope.showRegister) {
       this.$scope.showRegister = false;
     }
     else {
@@ -82,7 +89,7 @@ export class NavbarComponent {
 
     this.$http({
       method: 'POST',
-      url: this.URLS.API+'/users',
+      url: this.URLS.API + '/users',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];
@@ -92,14 +99,14 @@ export class NavbarComponent {
       },
       data: {name: user.name, email: user.email, mobile: user.mobile, password: user.password}
 
-    }).then((data, status, headers, config)=> {
+    }).then((data, status, headers, config) => {
       // deferred.resolve(data);
-      this.$scope.showRegister=false;
-      console.log("Register data is : ",data);
-      localStorage.userid=data.id;
+      this.$scope.showRegister = false;
+      console.log("Register data is : ", data);
+      localStorage.userid = data.id;
       // location.reload();
 
-    }).catch((data, status)=> {
+    }).catch((data, status) => {
       // return deferred.reject(data);
       alert("Problem with register try Again");
       console.log("error ", status);
@@ -110,7 +117,7 @@ export class NavbarComponent {
   login(login) {
     this.$http({
       method: 'POST',
-      url: this.URLS.API+'/users/login',
+      url: this.URLS.API + '/users/login',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       transformRequest: function (obj) {
         var str = [];
@@ -118,32 +125,26 @@ export class NavbarComponent {
           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
       },
-      data: {username: login.email,password: login.password}
+      data: {username: login.email, password: login.password}
 
     }).success(function (data, status, headers, config) {
       // deferred.resolve(data);
       // this.$scope.showRegister=false;
       console.log("status ", status);
       console.log("DAta ", data);
-      if(status==200)
-      {
-        localStorage.userid=data;
-         location.reload();
+      if (status == 200) {
+        localStorage.userid = data;
+        location.reload();
       }
-      else{
+      else {
         alert("Invalid User Details");
       }
       console.log("done ", data);
     }).error(function (data, status) {
       // return deferred.reject(data);
       console.log("error ", status);
-      alert("Invalid User Details");
+      alert('Invalid User Details');
     });
-
-  }
-  logout(){
-    delete localStorage.userid;
-    location.href="/";
   }
 
 }

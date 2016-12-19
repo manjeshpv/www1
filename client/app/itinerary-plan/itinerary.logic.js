@@ -16,7 +16,7 @@ export class Itinerary {
     var flag = false;
     var data = itinerary.find(function (ele) {
 
-      if (ele.id == id) {
+      if (ele.poi_id == id) {
         flag = true;
       }
 
@@ -26,7 +26,7 @@ export class Itinerary {
 
   getModelItem(id, day, placename, lati, longi, vlati, vlongi, time, distance, minExploTime, maxExploTime, waitTime, categoryImg, visited,image) {
     return {
-      id: id,
+      poi_id: id,
       day: day,
       placename: placename,
       latitude: lati,
