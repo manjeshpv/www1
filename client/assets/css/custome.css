@@ -1315,7 +1315,7 @@
     width: 100%;
     float: left;
     position: absolute;
-    bottom:28px;
+    bottom:0px;
     padding: 10px;
     text-align: center;
     background: rgba(0, 0, 0, 0.7);

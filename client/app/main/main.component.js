@@ -10,10 +10,10 @@ export class MainController {
   loiti = new Itinerary();
 
   /*@ngInject*/
-  constructor($http, $scope, $filter,URLS) {
+  constructor($http, $scope, $filter, URLS) {
     this.$filter = $filter;
     this.$http = $http;
-    this.URLS=URLS;
+    this.URLS = URLS;
     myMap();
     this.$scope = $scope;
     $scope.slides = [
@@ -31,17 +31,28 @@ export class MainController {
       'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
       'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
     ];
+    this.loadNearbyPlace();
+  }
+
+  loadNearbyPlace() {
+    this.$http.get(this.URLS.API + '/nearby-places/23')
+      .then((responce) => {
+        this.$scope.nearbyPlaces = responce.data;
+      })
+      .catch((err) => {
+        console.log('Near By places Error : ', err);
+      });
   }
 
   $onInit() {
 
-    this.$http.get(this.URLS.API+'/banners')
+    this.$http.get(this.URLS.API + '/banners')
       .then(response => {
         this.$scope.mySlides = response.data;
         console.log("Data is : ", this.$scope.mySlides);
       });
 
-    this.$http.get(this.URLS.API+'/home-sections/23')
+    this.$http.get(this.URLS.API + '/home-sections/23')
       .then(response => {
         this.$scope.poiByCity = response.data;
         console.log("Data is : ", this.$scope.poiByCity);

@@ -40,7 +40,7 @@
       </div>
       <li ng-show='$ctrl.OAuth.isAuthenticated()' class="myAccount"><a href="/my-trip">My Account</a></li>
       <li class="nav_saperator">|</li>
-      <li ng-show='$ctrl.OAuth.isAuthenticated()'>{{ $ctrl.Session.read('user').email}}</li>
+      <!--<li ng-show='$ctrl.OAuth.isAuthenticated()'>{{ $ctrl.Session.read('user').email}}</li>-->
       <li ng-show="showLoginbtn" class="login"><a href="#" ng-click="$ctrl.showLogin()"  ng-hide='$ctrl.OAuth.isAuthenticated()'>Login</a></li>
       <li ng-show="$ctrl.OAuth.isAuthenticated()" class="login"><a href="#" ng-click="$ctrl.logout()">Logout</a></li>
       <li ng-show="showRegisterbtn" class="nav_saperator">|</li>

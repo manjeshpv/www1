@@ -15,7 +15,7 @@
     <!--</div>-->
 
     <!-- carousel main -->
-    <flex-slider flex-slide="s in mySlides track by $index">
+    <flex-slider style="margin-top: -30px !important;" flex-slide="s in mySlides track by $index">
       <li>
         <img ng-src='../../assets/images/banner/{{s.image}}'>
       </li>
@@ -412,83 +412,88 @@
 <section class="best_select">
   <div class="nearby">
     <div class="container">
-      <h4 class="sctn_heading">Nearby Place</h4>
-      <div class="row caro-slider">
+      <h4>Nearby Place</h4>
 
-        <!--<flex-slider class="carousel" slide="s in slides track by $index" animation="slide" animation-loop="false" item-width="210" item-margin="5">-->
-          <!--<li>-->
-            <!--<img ng-src="{{s}}">-->
-          <!--</li>-->
-        <!--</flex-slider>-->
+        <flex-slider class="carousel" slide="place in nearbyPlaces track by $index" animation="slide" animation-loop="false"
+                     item-width="210" item-margin="5">
+          <li>
+            <div class="nearby_item">
+              <img style="height:200px" src="assets/images/city/{{place.City.image}}">
+              <div class="nearby_item_name">
+                <a href="javascript:;">{{place.City.name}}</a>
+              </div>
+            </div>
+          </li>
+        </flex-slider>
 
-        <div id="jssor_1"
-             style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;"
-             flexcaroslider>
-          <!-- Loading Screen -->
-          <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-            <div
-              style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-            <div
-              style="position:absolute;display:block;background:url('assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-          </div>
-          <div data-u="slides"
-               style="cursor: default; position: relative; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden;">
-            <a data-u="any" href="http://www.jssor.com" style="display:none">Carousel</a>
-            <div>
-              <div class="nearby_item">
-                <img src="assets/images/ajmer.jpg">
-                <div class="nearby_item_name">
-                  <a href="javascript:;">Ajmer</a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="nearby_item">
-                <img src="assets/images/sambhar.jpg">
-                <div class="nearby_item_name">
-                  <a href="javascript:;">Sambhar</a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="nearby_item">
-                <img src="assets/images/pushkar.jpg">
-                <div class="nearby_item_name">
-                  <a href="javascript:;">Pushkar</a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="nearby_item">
-                <img src="assets/images/sambhar.jpg">
-                <div class="nearby_item_name">
-                  <a href="javascript:;">Sambhar</a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="nearby_item">
-                <img src="assets/images/mandawa.jpg">
-                <div class="nearby_item_name">
-                  <a href="javascript:;">Mandawa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Bullet Navigator -->
-          <!--<div data-u="navigator" class="jssorb03" style="bottom:10px;right:10px;">-->
-          <!--&lt;!&ndash; bullet navigator item prototype &ndash;&gt;-->
-          <!--<div data-u="prototype" style="width:21px;height:21px;">-->
-          <!--<div data-u="numbertemplate"></div>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!-- Arrow Navigator -->
-          <span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;"
-                data-autocenter="2"></span>
-          <span data-u="arrowright" class="jssora03r"
-                style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
-        </div>
-      </div>
+        <!--<div id="jssor_1"-->
+        <!--style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; visibility: hidden;"-->
+        <!--flexcaroslider>-->
+        <!--&lt;!&ndash; Loading Screen &ndash;&gt;-->
+        <!--<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">-->
+        <!--<div-->
+        <!--style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>-->
+        <!--<div-->
+        <!--style="position:absolute;display:block;background:url('assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>-->
+        <!--</div>-->
+        <!--<div data-u="slides"-->
+        <!--style="cursor: default; position: relative; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden;">-->
+        <!--<a data-u="any" href="http://www.jssor.com" style="display:none">Carousel</a>-->
+        <!--<div>-->
+        <!--<div class="nearby_item">-->
+        <!--<img src="assets/images/ajmer.jpg">-->
+        <!--<div class="nearby_item_name">-->
+        <!--<a href="javascript:;">Ajmer</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div class="nearby_item">-->
+        <!--<img src="assets/images/sambhar.jpg">-->
+        <!--<div class="nearby_item_name">-->
+        <!--<a href="javascript:;">Sambhar</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div class="nearby_item">-->
+        <!--<img src="assets/images/pushkar.jpg">-->
+        <!--<div class="nearby_item_name">-->
+        <!--<a href="javascript:;">Pushkar</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div class="nearby_item">-->
+        <!--<img src="assets/images/sambhar.jpg">-->
+        <!--<div class="nearby_item_name">-->
+        <!--<a href="javascript:;">Sambhar</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div class="nearby_item">-->
+        <!--<img src="assets/images/mandawa.jpg">-->
+        <!--<div class="nearby_item_name">-->
+        <!--<a href="javascript:;">Mandawa</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; Bullet Navigator &ndash;&gt;-->
+        <!--&lt;!&ndash;<div data-u="navigator" class="jssorb03" style="bottom:10px;right:10px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; bullet navigator item prototype &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div data-u="prototype" style="width:21px;height:21px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div data-u="numbertemplate"></div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash; Arrow Navigator &ndash;&gt;-->
+        <!--<span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;"-->
+        <!--data-autocenter="2"></span>-->
+        <!--<span data-u="arrowright" class="jssora03r"-->
+        <!--style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>-->
+        <!--</div>-->
+
     </div>
   </div>
 </section>
