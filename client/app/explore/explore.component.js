@@ -6,8 +6,8 @@ import routes from './explore.routes';
 
 export class ExploreComponent {
   description = '';
-  poiInfo=[];
-  url="";
+  poiInfo = [];
+  url = "";
   mapCanvas = document.getElementById("map");
   mapOptions = {
     center: new google.maps.LatLng(26.912484, 75.747331), zoom: 13
@@ -15,13 +15,13 @@ export class ExploreComponent {
   map = new google.maps.Map(this.mapCanvas, this.mapOptions);
 
   /*@ngInject*/
-  constructor($http, $scope, $routeParams,URLS) {
+  constructor($http, $scope, $routeParams, URLS) {
     this.$routeParams = $routeParams;
-    this.$scope=$scope;
+    this.$scope = $scope;
     console.log("Poi is id :", this.$routeParams.poiid);
     this.$http = $http
     this.message = 'Hello';
-    this.URLS=URLS;
+    this.URLS = URLS;
 
     $scope.slides = [
       'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
@@ -41,8 +41,22 @@ export class ExploreComponent {
 
   }
 
+  loadNearByActivity() {
+    this.$http.get(this.URLS.API + '/nearby-activitys/' + this.$routeParams.poiid)
+      .then(response => {
+        this.$scope.activities = response.data;
+      });
+  }
+
+  loadNearByPois() {
+    this.$http.get(this.URLS.API + '/nearby-pois/' + this.$routeParams.poiid)
+      .then(response => {
+        this.$scope.nearbyPois = response.data;
+      });
+  }
+
   $onInit() {
-    this.$http.get(this.URLS.API+'/poi-images/' + this.$routeParams.poiid)
+    this.$http.get(this.URLS.API + '/poi-images/' + this.$routeParams.poiid)
       .then(response => {
         this.$scope.poiImages = response.data;
         console.log("Poi Images : ", this.$scope.poiImages);
@@ -57,8 +71,8 @@ export class ExploreComponent {
         var mylatLong = new google.maps.LatLng(this.poiInfo.Poi.latitude, this.poiInfo.Poi.longitude);
         this.setLocation(mylatLong, this.poiInfo.Poi);
       });
-
-
+    this.loadNearByActivity();
+    this.loadNearByPois();
   }
 
   showMore() {
@@ -93,55 +107,51 @@ export class ExploreComponent {
     this.map.setZoom(10);
   }
 
-  findplace(placetofind)
-  {
-console.log("Find Place ");
+  findplace(placetofind) {
+    console.log("Find Place ");
     var pyrmont = new google.maps.LatLng(this.poiInfo.Poi.latitude, this.poiInfo.Poi.longitude);
- var request = {
-    location: pyrmont,
-    radius: 1500,
-    types: [placetofind]
-  };
-  var infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(this.map);
-  service.nearbySearch(request,(results, status)=>{
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        this.createMarker(results[i]);
+    var request = {
+      location: pyrmont,
+      radius: 1500,
+      types: [placetofind]
+    };
+    var infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(this.map);
+    service.nearbySearch(request, (results, status) => {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          this.createMarker(results[i]);
+        }
       }
-    }
-  });
-}
+    });
+  }
 
 
-createMarker(place)
-{
-  var infowindow = new google.maps.InfoWindow();
-  console.log("place is  :",place);
-  var placeLoc = place.geometry.location;
-  var marker = new google.maps.Marker({
-    map: this.map,
-    position: place.geometry.location
-  });
-  var contentString = '<div style="background-color: #00A8FF;padding: 5px;color:#ffffff">' + place.name + '</div>';
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-  google.maps.event.addListener(marker, 'click', function () {
-    infowindow.open(this.map, marker);
-    $(".gm-style-iw").parent().addClass("transparentClass");
-    $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
-  });
+  createMarker(place) {
+    var infowindow = new google.maps.InfoWindow();
+    console.log("place is  :", place);
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: this.map,
+      position: place.geometry.location
+    });
+    var contentString = '<div style="background-color: #00A8FF;padding: 5px;color:#ffffff">' + place.name + '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    google.maps.event.addListener(marker, 'click', function () {
+      infowindow.open(this.map, marker);
+      $(".gm-style-iw").parent().addClass("transparentClass");
+      $(".gm-style-iw").parent().children(':first-child').children().addClass('hideClass');
+    });
 
-  google.maps.event.addListener(marker, 'dragend', function (event) {
-    console.log(this.getPosition().lat());
-    console.log(this.getPosition().lng());
-  });
-  this.map.setZoom(10);
+    google.maps.event.addListener(marker, 'dragend', function (event) {
+      console.log(this.getPosition().lat());
+      console.log(this.getPosition().lng());
+    });
+    this.map.setZoom(10);
 
-}
-
-
+  }
 
 
 }

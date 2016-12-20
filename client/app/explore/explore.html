@@ -142,13 +142,13 @@
           <h4 class="">Nearby Activity</h4>
           <div class="row caro-slider">
 
-            <flex-slider class="carousel" slide="s in slides track by $index" animation="slide" animation-loop="false"
+            <flex-slider class="carousel" slide="activity in activities track by $index" animation="slide" animation-loop="false"
                          item-width="210" item-margin="5">
               <li>
                 <div class="nearby_item">
                   <img src="assets/images/ajmer.jpg">
                   <div class="nearby_item_name">
-                    <a href="javascript:;">Sheesh Mahal</a>
+                    <a href="javascript:;">{{activity.Activity.name}}</a>
                   </div>
                 </div>
               </li>
@@ -167,13 +167,13 @@
           <h4 class="">People also visited</h4>
           <div class="row caro-slider">
 
-            <flex-slider class="carousel" slide="s in slides track by $index" animation="slide" animation-loop="false"
+            <flex-slider class="carousel" slide="nearbyPoi in nearbyPois track by $index" animation="slide" animation-loop="false"
                          item-width="210" item-margin="5">
               <li>
                 <div class="nearby_item">
-                  <img src="assets/images/ajmer.jpg">
+                  <img src="assets/images/poi/medium/{{nearbyPoi.Poi.image}}">
                   <div class="nearby_item_name">
-                    <a href="javascript:;">City Place</a>
+                    <a href="/explore/{{nearbyPoi.Poi.id}}">{{nearbyPoi.Poi.name}}</a>
                   </div>
                 </div>
               </li>
